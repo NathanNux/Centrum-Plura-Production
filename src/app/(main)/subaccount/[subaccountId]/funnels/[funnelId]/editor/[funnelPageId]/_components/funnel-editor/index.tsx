@@ -21,7 +21,8 @@ const FunnelEditor = ({ funnelPageId, liveMode }: Props) => {
     }
   }, [liveMode])
 
-  //CHALLENGE: make this more performant
+    //CHALLENGE: make this part more performante - it's fetching the data twice on every page load. Once in App and once here.
+    // this can be done through havign it stored in the client site through provider file and having cache in the provider file will speed up the load time 'DNS' but more simpler way is to use the useSWR hook to cache the data
   useEffect(() => {
     const fetchData = async () => {
       const response = await getFunnelPageDetails(funnelPageId)

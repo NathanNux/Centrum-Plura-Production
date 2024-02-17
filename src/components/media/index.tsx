@@ -1,14 +1,7 @@
 import { GetMediaFiles } from '@/lib/types'
 import React from 'react'
 import MediaUploadButton from './upload-buttons'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '../ui/command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../ui/command'
 import MediaCard from './media-card'
 import { FolderSearch } from 'lucide-react'
 
@@ -27,7 +20,7 @@ const MediaComponent = ({ data, subaccountId }: Props) => {
       <Command className="bg-transparent">
         <CommandInput placeholder="Search for file name..." />
         <CommandList className="pb-40 max-h-full ">
-          <CommandEmpty>No Media Files</CommandEmpty>
+          <CommandEmpty>Žádné Media Soubory</CommandEmpty>
           <CommandGroup heading="Media Files">
             <div className="flex flex-wrap gap-4 pt-4">
               {data?.Media.map((file) => (
@@ -45,7 +38,7 @@ const MediaComponent = ({ data, subaccountId }: Props) => {
                     className="dark:text-muted text-slate-300"
                   />
                   <p className="text-muted-foreground ">
-                    Empty! no files to show.
+                    Prázdné! žádné soubory k zobrazení.
                   </p>
                 </div>
               )}

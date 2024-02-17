@@ -33,6 +33,7 @@ const TextComponent = (props: Props) => {
   //WE ARE NOT ADDING DRAG DROP
   return (
     <div
+      draggable //WE ARE NOT ADDING DRAG DROP
       style={styles}
       className={clsx(
         'p-[2px] w-full m-[5px] relative text-[16px] transition-all',

@@ -1,21 +1,8 @@
 'use client'
 import React, { useEffect } from 'react'
 import { z } from 'zod'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '../ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
@@ -25,12 +12,7 @@ import Loading from '../global/loading'
 import { useToast } from '../ui/use-toast'
 import { FunnelPage } from '@prisma/client'
 import { FunnelPageSchema } from '@/lib/types'
-import {
-  deleteFunnelePage,
-  getFunnels,
-  saveActivityLogsNotification,
-  upsertFunnelPage,
-} from '@/lib/queries'
+import { deleteFunnelePage, getFunnels, saveActivityLogsNotification, upsertFunnelPage } from '@/lib/queries'
 import { useRouter } from 'next/navigation'
 import { v4 } from 'uuid'
 import { CopyPlusIcon, Trash } from 'lucide-react'
@@ -70,7 +52,7 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
     if (order !== 0 && !values.pathName)
       return form.setError('pathName', {
         message:
-          "Pages other than the first page in the funnel require a path name example 'secondstep'.",
+          "Všechny stránky kromě Vaší první vyžaduní zadání jejich cesty, například 'produkt2'.",
       })
     try {
       const response = await upsertFunnelPage(
@@ -86,21 +68,21 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a funnel page | ${response?.name}`,
+        description: `Aktulizoval/a Funnel Stránku | ${response?.name}`,
         subaccountId: subaccountId,
       })
 
       toast({
-        title: 'Success',
-        description: 'Saves Funnel Page Details',
+        title: 'Úspěch',
+        description: 'Informace o Stránce byly uloženy',
       })
       router.refresh()
     } catch (error) {
       console.log(error)
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could Save Funnel Page Details',
+        title: 'Opps!',
+        description: 'Informace o Stránce nemohly být uloženy',
       })
     }
   }
@@ -108,10 +90,10 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Funnel Page</CardTitle>
+        <CardTitle>Stránka Funnelu</CardTitle>
         <CardDescription>
-          Funnel pages are flow in the order they are created by default. You
-          can move them around to change their order.
+          Uspořádání Stránke Funnelu je výchozí. Můžete je přesunout, aby byly
+          v jiném pořadí.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -126,10 +108,10 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Jméno</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Name"
+                      placeholder="Jméno"
                       {...field}
                     />
                   </FormControl>
@@ -143,10 +125,10 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
               name="pathName"
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Path Name</FormLabel>
+                  <FormLabel>Jméno Cesty</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Path for the page"
+                      placeholder="Cesta pro Vaši stránku"
                       {...field}
                       value={field.value?.toLowerCase()}
                     />
@@ -161,7 +143,7 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                 disabled={form.formState.isSubmitting}
                 type="submit"
               >
-                {form.formState.isSubmitting ? <Loading /> : 'Save Page'}
+                {form.formState.isSubmitting ? <Loading /> : 'Uložit Stránku'}
               </Button>
 
               {defaultData?.id && (
@@ -174,7 +156,7 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                     const response = await deleteFunnelePage(defaultData.id)
                     await saveActivityLogsNotification({
                       agencyId: undefined,
-                      description: `Deleted a funnel page | ${response?.name}`,
+                      description: `Smazal/a Stránky Funnelu | ${response?.name}`,
                       subaccountId: subaccountId,
                     })
                     router.refresh()
@@ -209,8 +191,8 @@ const CreateFunnelPage: React.FC<CreateFunnelPageProps> = ({
                       funnelId
                     )
                     toast({
-                      title: 'Success',
-                      description: 'Saves Funnel Page Details',
+                      title: 'Úspěch',
+                      description: 'Informace o stránce byly uloženy',
                     })
                     router.refresh()
                   }}

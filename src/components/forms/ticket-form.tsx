@@ -15,37 +15,15 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { toast } from '../ui/use-toast'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { CheckIcon, ChevronsUpDownIcon, User2 } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from '../ui/command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '../ui/command'
 import { cn } from '@/lib/utils'
 import Loading from '../global/loading'
 import TagCreator from '../global/tag-creator'
@@ -126,21 +104,21 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a ticket | ${response?.name}`,
+        description: `Aktulizoval/a Lístek | ${response?.name}`,
         subaccountId,
       })
 
       toast({
-        title: 'Success',
-        description: 'Saved  details',
+        title: 'Úspěch',
+        description: 'Informace uloženy',
       })
       if (response) getNewTicket(response)
       router.refresh()
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not save pipeline details',
+        title: 'Opps!',
+        description: 'Informace nemohly být uloženy',
       })
     }
     setClose()
@@ -149,7 +127,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Ticket Details</CardTitle>
+        <CardTitle>Informace o Lístku</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -163,10 +141,10 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Ticket Name</FormLabel>
+                  <FormLabel>Jméno Lístku</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Name"
+                      placeholder="Jméno"
                       {...field}
                     />
                   </FormControl>
@@ -180,10 +158,10 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>Podrobnosti</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Description"
+                      placeholder="Podrobnosti"
                       {...field}
                     />
                   </FormControl>
@@ -197,10 +175,10 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
               name="value"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Ticket Value</FormLabel>
+                  <FormLabel>Hodnota Lístku</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Value"
+                      placeholder="Cena"
                       {...field}
                     />
                   </FormControl>
@@ -208,13 +186,13 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
                 </FormItem>
               )}
             />
-            <h3>Add tags</h3>
+            <h3>Přidat štítek</h3>
             <TagCreator
               subAccountId={subaccountId}
               getSelectedTags={setTags}
               defaultTags={defaultData.ticket?.Tags || []}
             />
-            <FormLabel>Assigned To Team Member</FormLabel>
+            <FormLabel>Připnuto Členovi týmu</FormLabel>
             <Select
               onValueChange={setAssignedTo}
               defaultValue={assignedTo}
@@ -231,7 +209,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
                       </Avatar>
 
                       <span className="text-sm text-muted-foreground">
-                        Not Assigned
+                        Nepřipnuto
                       </span>
                     </div>
                   }
@@ -262,7 +240,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
                 ))}
               </SelectContent>
             </Select>
-            <FormLabel>Customer</FormLabel>
+            <FormLabel>Zákazník</FormLabel>
             <Popover>
               <PopoverTrigger
                 asChild
@@ -282,7 +260,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
               <PopoverContent className="w-[400px] p-0">
                 <Command>
                   <CommandInput
-                    placeholder="Search..."
+                    placeholder="Hledat..."
                     className="h-9"
                     value={search}
                     onChangeCapture={async (value) => {
@@ -300,7 +278,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
                       }, 1000)
                     }}
                   />
-                  <CommandEmpty>No Customer found.</CommandEmpty>
+                  <CommandEmpty>Žádní zákazníci.</CommandEmpty>
                   <CommandGroup>
                     {contactList.map((c) => (
                       <CommandItem
@@ -330,7 +308,7 @@ const TicketForm = ({ getNewTicket, laneId, subaccountId }: Props) => {
               disabled={isLoading}
               type="submit"
             >
-              {form.formState.isSubmitting ? <Loading /> : 'Save'}
+              {form.formState.isSubmitting ? <Loading /> : 'Uložit'}
             </Button>
           </form>
         </Form>

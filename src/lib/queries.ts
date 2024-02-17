@@ -1,25 +1,10 @@
 'use server'
-
 import { clerkClient, currentUser } from '@clerk/nextjs'
 import { db } from './db'
 import { redirect } from 'next/navigation'
-import {
-  Agency,
-  Lane,
-  Plan,
-  Prisma,
-  Role,
-  SubAccount,
-  Tag,
-  Ticket,
-  User,
-} from '@prisma/client'
+import { Agency, Lane, Plan, Prisma, Role, SubAccount, Tag, Ticket, User } from '@prisma/client'
 import { v4 } from 'uuid'
-import {
-  CreateFunnelFormSchema,
-  CreateMediaType,
-  UpsertFunnelPage,
-} from './types'
+import { CreateFunnelFormSchema, CreateMediaType, UpsertFunnelPage } from './types'
 import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 
@@ -344,32 +329,32 @@ export const upsertSubAccount = async (subAccount: SubAccount) => {
             link: `/subaccount/${subAccount.id}/launchpad`,
           },
           {
-            name: 'Settings',
+            name: 'Nastavení',
             icon: 'settings',
             link: `/subaccount/${subAccount.id}/settings`,
           },
           {
-            name: 'Funnels',
+            name: 'Funnely',
             icon: 'pipelines',
             link: `/subaccount/${subAccount.id}/funnels`,
           },
           {
-            name: 'Media',
+            name: 'Média',
             icon: 'database',
             link: `/subaccount/${subAccount.id}/media`,
           },
           {
-            name: 'Automations',
+            name: 'Automatizace',
             icon: 'chip',
             link: `/subaccount/${subAccount.id}/automations`,
           },
           {
-            name: 'Pipelines',
+            name: 'Obchodní Plány',
             icon: 'flag',
             link: `/subaccount/${subAccount.id}/pipelines`,
           },
           {
-            name: 'Contacts',
+            name: 'Kontaty',
             icon: 'person',
             link: `/subaccount/${subAccount.id}/contacts`,
           },

@@ -3,11 +3,7 @@ import ContactForm from '@/components/forms/contact-form'
 import { Badge } from '@/components/ui/badge'
 import { toast } from '@/components/ui/use-toast'
 import { EditorBtns } from '@/lib/constants'
-import {
-  getFunnel,
-  saveActivityLogsNotification,
-  upsertContact,
-} from '@/lib/queries'
+import { getFunnel, saveActivityLogsNotification, upsertContact } from '@/lib/queries'
 
 import { ContactUserFormSchema } from '@/lib/types'
 import { EditorElement, useEditor } from '@/providers/editor/editor-provider'
@@ -78,19 +74,19 @@ const ContactFormComponent = (props: Props) => {
       //WIP Call trigger endpoint
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `A New contact signed up | ${response?.name}`,
+        description: `Nový Kontakt se zaregistroval | ${response?.name}`,
         subaccountId: subaccountId,
       })
       toast({
-        title: 'Success',
-        description: 'Successfully Saved your info',
+        title: 'Úspěch',
+        description: 'Vaše údaje byly úspěšně uloženy',
       })
       await goToNextPage()
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Failed',
-        description: 'Could not save your information',
+        title: 'Chyba',
+        description: 'Vaše informace se nepodařilo uložit',
       })
     }
   }
@@ -119,8 +115,8 @@ const ContactFormComponent = (props: Props) => {
           </Badge>
         )}
       <ContactForm
-        subTitle="Contact Us"
-        title="Want a free quote? We can help you"
+        subTitle="Kontaktujte nás"
+        title="Chcete bezplatnou cenovou nabídku? Můžeme Vám pomoct."
         apiCall={onFormSubmit}
       />
       {state.editor.selectedElement.id === props.element.id &&

@@ -10,6 +10,8 @@ import { Trash } from 'lucide-react'
 
 type Props = { element: EditorElement }
 
+// Challenge: Now when you drag and drop a component into the editor, it copies single element - conainter -  the challenge is that you could do that also for the entire component with all of its children.
+
 const Container = ({ element }: Props) => {
   const { id, content, name, styles, type } = element
   const { dispatch, state } = useEditor()
@@ -65,7 +67,7 @@ const Container = ({ element }: Props) => {
             containerId: id,
             elementDetails: {
               content: {
-                src: 'https://www.youtube.com/embed/A3l6YYkXzzg?si=zbcCeWcpq7Cwf8W1',
+                src: 'https://www.youtube.com/', //možnost přidat vlastní link
               },
               id: v4(),
               name: 'Video',

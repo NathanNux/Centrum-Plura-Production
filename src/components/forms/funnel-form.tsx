@@ -1,15 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import { z } from 'zod'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { useForm } from 'react-hook-form'
 import { Funnel } from '@prisma/client'
@@ -73,19 +65,19 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
     )
     await saveActivityLogsNotification({
       agencyId: undefined,
-      description: `Update funnel | ${response.name}`,
+      description: `Aktualizoval/a Funnel | ${response.name}`,
       subaccountId: subAccountId,
     })
     if (response)
       toast({
-        title: 'Success',
-        description: 'Saved funnel details',
+        title: 'Úspěch',
+        description: 'Informace o Funnelu byly uloženy',
       })
     else
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not save funnel details',
+        title: 'Opps!',
+        description: 'Informace o Funnelu nemohly být uloženy',
       })
     setClose()
     router.refresh()
@@ -93,7 +85,7 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
   return (
     <Card className="flex-1">
       <CardHeader>
-        <CardTitle>Funnel Details</CardTitle>
+        <CardTitle>Informace o Funnelu</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -107,7 +99,7 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Funnel Name</FormLabel>
+                  <FormLabel>Jméno Funnelu</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Name"
@@ -123,10 +115,10 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Funnel Description</FormLabel>
+                  <FormLabel>Popisek Funnelu</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Tell us a little bit more about this funnel."
+                      placeholder="Řekněte nám něco víc o tomto funnelu."
                       {...field}
                     />
                   </FormControl>
@@ -139,10 +131,10 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
               name="subDomainName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sub domain</FormLabel>
+                  <FormLabel>Sub doména</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Sub domain for funnel"
+                      placeholder="Sub doména pro tento Funnel"
                       {...field}
                     />
                   </FormControl>
@@ -172,7 +164,7 @@ const FunnelForm: React.FC<CreateFunnelProps> = ({
               disabled={isLoading}
               type="submit"
             >
-              {form.formState.isSubmitting ? <Loading /> : 'Save'}
+              {form.formState.isSubmitting ? <Loading /> : 'Uložit'}
             </Button>
           </form>
         </Form>

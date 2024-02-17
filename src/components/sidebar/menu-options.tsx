@@ -1,11 +1,5 @@
 'use client'
-
-import {
-  Agency,
-  AgencySidebarOption,
-  SubAccount,
-  SubAccountSidebarOption,
-} from '@prisma/client'
+import { Agency, AgencySidebarOption, SubAccount, SubAccountSidebarOption } from '@prisma/client'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '../ui/sheet'
 import { Button } from '../ui/button'
@@ -14,14 +8,7 @@ import clsx from 'clsx'
 import { AspectRatio } from '../ui/aspect-ratio'
 import Image from 'next/image'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '../ui/command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../ui/command'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 import { useModal } from '@/providers/modal-provider'
@@ -125,13 +112,13 @@ const MenuOptions = ({
             </PopoverTrigger>
             <PopoverContent className="w-80 h-80 mt-4 z-[200]">
               <Command className="rounded-lg">
-                <CommandInput placeholder="Search Accounts..." />
+                <CommandInput placeholder="Hledat účty..." />
                 <CommandList className="pb-16">
-                  <CommandEmpty> No results found</CommandEmpty>
+                  <CommandEmpty>Žádné výsledky</CommandEmpty>
                   {(user?.role === 'AGENCY_OWNER' ||
                     user?.role === 'AGENCY_ADMIN') &&
                     user?.Agency && (
-                      <CommandGroup heading="Agency">
+                      <CommandGroup heading="Centrum">
                         <CommandItem className="!bg-transparent my-2 text-primary broder-[1px] border-border p-2 rounded-md hover:!bg-muted cursor-pointer transition-all">
                           {defaultOpen ? (
                             <Link
@@ -228,7 +215,7 @@ const MenuOptions = ({
                             )}
                           </CommandItem>
                         ))
-                      : 'No Accounts'}
+                      : 'Žádno účty'}
                   </CommandGroup>
                 </CommandList>
                 {(user?.role === 'AGENCY_OWNER' ||
@@ -239,8 +226,8 @@ const MenuOptions = ({
                       onClick={() => {
                         setOpen(
                           <CustomModal
-                            title="Create A Subaccount"
-                            subheading="You can switch between your agency account and the subaccount from the sidebar"
+                            title="Vytvořit Subúčet"
+                            subheading="Mezi svými účty můžete přepínat v bočním menu."
                           >
                             <SubAccountDetails
                               agencyDetails={user?.Agency as Agency}
@@ -252,20 +239,20 @@ const MenuOptions = ({
                       }}
                     >
                       <PlusCircleIcon size={15} />
-                      Create Sub Account
+                      Vytvořit Subúčet
                     </Button>
                   </SheetClose>
                 )}
               </Command>
             </PopoverContent>
           </Popover>
-          <p className="text-muted-foreground text-xs mb-2">MENU LINKS</p>
+          <p className="text-muted-foreground text-xs mb-2">MENU LINKY</p>
           <Separator className="mb-4" />
           <nav className="relative">
             <Command className="rounded-lg overflow-visible bg-transparent">
               <CommandInput placeholder="Search..." />
               <CommandList className="py-4 overflow-visible">
-                <CommandEmpty>No Results Found</CommandEmpty>
+                <CommandEmpty>Žádné výsledky</CommandEmpty>
                 <CommandGroup className="overflow-visible">
                   {sidebarOpt.map((sidebarOptions) => {
                     let val

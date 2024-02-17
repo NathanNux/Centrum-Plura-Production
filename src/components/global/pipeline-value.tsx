@@ -4,15 +4,7 @@ import { Prisma } from '@prisma/client'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader } from '../ui/card'
 import { Progress } from '../ui/progress'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
 
 type Props = {
   subaccountId: string
@@ -65,19 +57,19 @@ const PipelineValue = ({ subaccountId }: Props) => {
   return (
     <Card className="relative w-full xl:w-[350px]">
       <CardHeader>
-        <CardDescription>Pipeline Value</CardDescription>
+        <CardDescription>Hodnota Obchodního Plánu</CardDescription>
         <small className="text-xs text-muted-foreground">
-          Pipeline Progress
+          Progres Obchodního Plánu
         </small>
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs text-muted-foreground">
-              Closed ${pipelineClosedValue}
+              Uzavřeno {pipelineClosedValue} CZK
             </p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">
-              Total ${totalPipelineValue + pipelineClosedValue}
+              Celkově {totalPipelineValue + pipelineClosedValue} CZK
             </p>
           </div>
         </div>
@@ -89,8 +81,8 @@ const PipelineValue = ({ subaccountId }: Props) => {
       </CardHeader>
       <CardContent className="text-sm text-muted-foreground">
         <p className="mb-2">
-          Total value of all tickets in the given pipeline except the last lane.
-          Your last lane is considered your closing lane in every pipeline.
+          Celková hodnota všech Lísků v daném plánu kromě posledního sloupce.
+          Poslední sloupec je považován za uzavírací sloupec v každém plánu.
         </p>
         <Select
           value={selectedPipelineId}
@@ -101,7 +93,7 @@ const PipelineValue = ({ subaccountId }: Props) => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Pipelines</SelectLabel>
+              <SelectLabel>Obchodní Plány</SelectLabel>
               {pipelines.map((pipeline) => (
                 <SelectItem
                   value={pipeline.id}

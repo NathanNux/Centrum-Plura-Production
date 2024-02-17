@@ -2,37 +2,14 @@
 import { Tag } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '../ui/alert-dialog'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../ui/alert-dialog'
 import TagComponent from './tag'
 import { PlusCircleIcon, TrashIcon, X } from 'lucide-react'
 import { toast } from '../ui/use-toast'
 import { v4 } from 'uuid'
-import {
-  deleteTag,
-  getTagsForSubaccount,
-  saveActivityLogsNotification,
-  upsertTag,
-} from '@/lib/queries'
+import { deleteTag, getTagsForSubaccount, saveActivityLogsNotification, upsertTag } from '@/lib/queries'
 
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-} from '@/components/ui/command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command'
 
 type Props = {
   subAccountId: string
@@ -72,14 +49,14 @@ const TagCreator = ({ getSelectedTags, subAccountId, defaultTags }: Props) => {
     if (!value) {
       toast({
         variant: 'destructive',
-        title: 'Tags need to have a name',
+        title: 'Štítky musí mít název',
       })
       return
     }
     if (!selectedColor) {
       toast({
         variant: 'destructive',
-        title: 'Please Select a color',
+        title: 'Vyberte si barvu Štítku',
       })
       return
     }
@@ -98,18 +75,18 @@ const TagCreator = ({ getSelectedTags, subAccountId, defaultTags }: Props) => {
     try {
       const response = await upsertTag(subAccountId, tagData)
       toast({
-        title: 'Created the tag',
+        title: 'Štítek vytvořen',
       })
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a tag | ${response?.name}`,
+        description: `Aktualizoval/a Štítek | ${response?.name}`,
         subaccountId: subAccountId,
       })
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Could not create tag',
+        title: 'Štítek nemohl být vytvořen',
       })
     }
   }
@@ -124,13 +101,13 @@ const TagCreator = ({ getSelectedTags, subAccountId, defaultTags }: Props) => {
     try {
       const response = await deleteTag(tagId)
       toast({
-        title: 'Deleted tag',
-        description: 'The tag is deleted from your subaccount.',
+        title: 'Štítek Smazán',
+        description: 'Tento štítek byl smazán z vašeho subúčtu',
       })
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Deleted a tag | ${response?.name}`,
+        description: `Smazal/a štítek | ${response?.name}`,
         subaccountId: subAccountId,
       })
 
@@ -138,7 +115,7 @@ const TagCreator = ({ getSelectedTags, subAccountId, defaultTags }: Props) => {
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Could not delete tag',
+        title: 'Štítek nemohl být smazán',
       })
     }
   }
@@ -178,7 +155,7 @@ const TagCreator = ({ getSelectedTags, subAccountId, defaultTags }: Props) => {
         </div>
         <div className="relative">
           <CommandInput
-            placeholder="Search for tag..."
+            placeholder="Hledat štítky..."
             value={value}
             onValueChange={setValue}
           />
@@ -212,27 +189,27 @@ const TagCreator = ({ getSelectedTags, subAccountId, defaultTags }: Props) => {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle className="text-left">
-                      Are you absolutely sure?
+                      Jste si opravdu jisti?
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-left">
-                      This action cannot be undone. This will permanently delete
-                      your the tag and remove it from our servers.
+                      Tato akce nelze vrátit. Tímto se smaže štítek a odstraní
+                      se z našich serverů.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter className="items-center">
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>Zrušit</AlertDialogCancel>
                     <AlertDialogAction
                       className="bg-destructive"
                       onClick={() => handleDeleteTag(tag.id)}
                     >
-                      Delete Tag
+                      Zmazat Štíte
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </CommandItem>
             ))}
           </CommandGroup>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>Nic nenalezeno.</CommandEmpty>
         </CommandList>
       </Command>
     </AlertDialog>

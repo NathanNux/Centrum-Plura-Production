@@ -1,21 +1,8 @@
 'use client'
 import React from 'react'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
+import { ColumnDef, flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table'
 import { useModal } from '@/providers/modal-provider'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
@@ -49,7 +36,7 @@ export default function DataTable<TData, TValue>({
         <div className="flex items-center py-4 gap-2">
           <Search />
           <Input
-            placeholder="Search Name..."
+            placeholder="Hledat Jméno..."
             value={
               (table.getColumn(filterValue)?.getFilterValue() as string) ?? ''
             }
@@ -65,8 +52,8 @@ export default function DataTable<TData, TValue>({
             if (modalChildren) {
               setOpen(
                 <CustomModal
-                  title="Add a team member"
-                  subheading="Send an invitation"
+                  title="Přidat člena týmu"
+                  subheading="Poslat pozvánku"
                 >
                   {modalChildren}
                 </CustomModal>
@@ -120,7 +107,7 @@ export default function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No Results.
+                  Žádné výsledky.
                 </TableCell>
               </TableRow>
             )}

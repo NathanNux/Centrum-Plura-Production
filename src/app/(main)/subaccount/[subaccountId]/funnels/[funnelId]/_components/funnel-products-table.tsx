@@ -1,19 +1,9 @@
 'use client'
 import React, { useState } from 'react'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import Stripe from 'stripe'
 import Image from 'next/image'
-import {
-  saveActivityLogsNotification,
-  updateFunnelProducts,
-} from '@/lib/queries'
+import { saveActivityLogsNotification, updateFunnelProducts } from '@/lib/queries'
 import { Funnel } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import { Input } from '@/components/ui/input'
@@ -42,7 +32,7 @@ const FunnelProductsTable: React.FC<FunnelProductsTableProps> = ({
     )
     await saveActivityLogsNotification({
       agencyId: undefined,
-      description: `Update funnel products | ${response.name}`,
+      description: `Aktualizoval/a Funnel produkt | ${response.name}`,
       subaccountId: defaultData.subAccountId,
     })
     setIsLoading(false)
@@ -80,10 +70,10 @@ const FunnelProductsTable: React.FC<FunnelProductsTableProps> = ({
         <TableHeader className="rounded-md">
           <TableRow>
             <TableHead>Live</TableHead>
-            <TableHead>Image</TableHead>
-            <TableHead>Name</TableHead>
+            <TableHead>Obrázek</TableHead>
+            <TableHead>Jméno</TableHead>
             <TableHead>Interval</TableHead>
-            <TableHead className="text-right">Price</TableHead>
+            <TableHead className="text-right">Cena</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="font-medium truncate">
@@ -133,7 +123,7 @@ const FunnelProductsTable: React.FC<FunnelProductsTableProps> = ({
         onClick={handleSaveProducts}
         className="mt-4"
       >
-        Save Products
+        Uložit Produkty
       </Button>
     </>
   )

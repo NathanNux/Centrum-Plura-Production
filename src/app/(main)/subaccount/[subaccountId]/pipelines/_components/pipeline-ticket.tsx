@@ -2,38 +2,11 @@ import TicketForm from '@/components/forms/ticket-form'
 import CustomModal from '@/components/global/custom-modal'
 import TagComponent from '@/components/global/tag'
 import LinkIcon from '@/components/icons/link'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@/components/ui/hover-card'
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { toast } from '@/components/ui/use-toast'
 import { deleteTicket, saveActivityLogsNotification } from '@/lib/queries'
 import { TicketWithTags } from '@/lib/types'
@@ -75,8 +48,8 @@ const PipelineTicket = ({
   const handleClickEdit = async () => {
     setOpen(
       <CustomModal
-        title="Update Ticket Details"
-        subheading=""
+        title="Aktualizovat Lístek"
+        subheading="Upravte svůj lístek. A stím i jeho detaily."
       >
         <TicketForm
           getNewTicket={editNewTicket}
@@ -95,13 +68,13 @@ const PipelineTicket = ({
       setAllTickets((tickets) => tickets.filter((t) => t.id !== ticket.id))
       const response = await deleteTicket(ticket.id)
       toast({
-        title: 'Deleted',
-        description: 'Deleted ticket from lane.',
+        title: 'Zmazáno',
+        description: 'Lístek byl smazán z Vašeho sloupce.',
       })
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Deleted a ticket | ${response?.name}`,
+        description: `Smazal/a Lístek | ${response?.name}`,
         subaccountId: subaccountId,
       })
 
@@ -109,8 +82,8 @@ const PipelineTicket = ({
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not delete the ticket.',
+        title: 'Opps!',
+        description: 'Lístek nemohl být smazán.',
       })
       console.log(error)
     }
@@ -169,7 +142,7 @@ const PipelineTicket = ({
                       <HoverCardTrigger asChild>
                         <div className="p-2 text-muted-foreground flex gap-2 hover:bg-muted transition-all rounded-lg cursor-pointer items-center">
                           <LinkIcon />
-                          <span className="text-xs font-bold">CONTACT</span>
+                          <span className="text-xs font-bold">KONTAKT</span>
                         </div>
                       </HoverCardTrigger>
                       <HoverCardContent
@@ -193,7 +166,7 @@ const PipelineTicket = ({
                             <div className="flex items-center pt-2">
                               <Contact2 className="mr-2 h-4 w-4 opacity-70" />
                               <span className="text-xs text-muted-foreground">
-                                Joined{' '}
+                                Se připojil{' '}
                                 {ticket.Customer?.createdAt.toLocaleDateString()}
                               </span>
                             </div>
@@ -236,12 +209,12 @@ const PipelineTicket = ({
                     </span>
                   </CardFooter>
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>Options</DropdownMenuLabel>
+                    <DropdownMenuLabel>Možnosti</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <AlertDialogTrigger>
                       <DropdownMenuItem className="flex items-center gap-2">
                         <Trash size={15} />
-                        Delete Ticket
+                        Smazat Lístek
                       </DropdownMenuItem>
                     </AlertDialogTrigger>
                     <DropdownMenuItem
@@ -249,18 +222,18 @@ const PipelineTicket = ({
                       onClick={handleClickEdit}
                     >
                       <Edit size={15} />
-                      Edit Ticket
+                      Upravit Lístek
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </Card>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
-                      Are you absolutely sure?
+                      Jste si opravdu jistí?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      the ticket and remove it from our servers.
+                      Tato akce nemůže být vrácena. Tato akce trvale smaže lístek
+                      se všemi údaji a jeho historii.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter className="flex items-center">
@@ -269,7 +242,7 @@ const PipelineTicket = ({
                       className="bg-destructive"
                       onClick={handleDeleteTicket}
                     >
-                      Delete
+                      Smazat
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

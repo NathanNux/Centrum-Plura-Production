@@ -41,7 +41,7 @@ const TeamPage = async ({ params }: Props) => {
       actionButtonText={
         <>
           <Plus size={15} />
-          Add
+          Přidat
         </>
       }
       modalChildren={<SendInvitation agencyId={agencyDetails.id} />}

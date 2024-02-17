@@ -3,14 +3,7 @@ import { NotificationWithUser } from '@/lib/types'
 import { UserButton } from '@clerk/nextjs'
 import React, { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '../ui/sheet'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '../ui/sheet'
 import { Bell } from 'lucide-react'
 import { Role } from '@prisma/client'
 import { Card } from '../ui/card'
@@ -61,11 +54,11 @@ const InfoBar = ({ notifications, subAccountId, className, role }: Props) => {
             </SheetTrigger>
             <SheetContent className="mt-4 mr-4 pr-4 overflow-scroll">
               <SheetHeader className="text-left">
-                <SheetTitle>Notifications</SheetTitle>
+                <SheetTitle>Oznámení</SheetTitle>
                 <SheetDescription>
                   {(role === 'AGENCY_ADMIN' || role === 'AGENCY_OWNER') && (
                     <Card className="flex items-center justify-between p-4">
-                      Current Subaccount
+                      Aktuální Subúčet
                       <Switch onCheckedChange={handleClick} />
                     </Card>
                   )}
@@ -110,7 +103,7 @@ const InfoBar = ({ notifications, subAccountId, className, role }: Props) => {
                   className="flex items-center justify-center text-muted-foreground"
                   mb-4
                 >
-                  You have no notifications
+                  Nemáte žádná oznámení
                 </div>
               )}
             </SheetContent>

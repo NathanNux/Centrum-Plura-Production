@@ -1,22 +1,8 @@
 'use client'
 import React, { useEffect } from 'react'
 import { z } from 'zod'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { useForm } from 'react-hook-form'
 import { Funnel, Lane, Pipeline } from '@prisma/client'
 import { Input } from '../ui/input'
@@ -24,13 +10,7 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import Loading from '../global/loading'
 import { LaneFormSchema } from '@/lib/types'
-import {
-  getPipelineDetails,
-  saveActivityLogsNotification,
-  upsertFunnel,
-  upsertLane,
-  upsertPipeline,
-} from '@/lib/queries'
+import { getPipelineDetails, saveActivityLogsNotification, upsertFunnel, upsertLane, upsertPipeline } from '@/lib/queries'
 import { v4 } from 'uuid'
 import { toast } from '../ui/use-toast'
 import { useModal } from '@/providers/modal-provider'
@@ -81,21 +61,21 @@ const LaneForm: React.FC<CreateLaneFormProps> = ({
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a lane | ${response?.name}`,
+        description: `Aktualizoval/a Sloupec | ${response?.name}`,
         subaccountId: d.subAccountId,
       })
 
       toast({
-        title: 'Success',
-        description: 'Saved pipeline details',
+        title: 'Úspěch',
+        description: 'Informace o Obchodním Plánu byly uloženy',
       })
 
       router.refresh()
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not save pipeline details',
+        title: 'Opps!',
+        description: 'Informace o Obchodním Plánu nemohly být uloženy',
       })
     }
     setClose()
@@ -103,7 +83,7 @@ const LaneForm: React.FC<CreateLaneFormProps> = ({
   return (
     <Card className="w-full ">
       <CardHeader>
-        <CardTitle>Lane Details</CardTitle>
+        <CardTitle>Informace o Sloupci</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -117,10 +97,10 @@ const LaneForm: React.FC<CreateLaneFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Lane Name</FormLabel>
+                  <FormLabel>Jméno Sloupce</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Lane Name"
+                      placeholder="Jméno Sloupce"
                       {...field}
                     />
                   </FormControl>
@@ -134,7 +114,7 @@ const LaneForm: React.FC<CreateLaneFormProps> = ({
               disabled={isLoading}
               type="submit"
             >
-              {form.formState.isSubmitting ? <Loading /> : 'Save'}
+              {form.formState.isSubmitting ? <Loading /> : 'Uložit'}
             </Button>
           </form>
         </Form>

@@ -1,22 +1,8 @@
 'use client'
 import React, { useEffect } from 'react'
 import { z } from 'zod'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { useForm } from 'react-hook-form'
 import { Funnel, Pipeline } from '@prisma/client'
 import { Input } from '../ui/input'
@@ -24,11 +10,7 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import Loading from '../global/loading'
 import { CreatePipelineFormSchema } from '@/lib/types'
-import {
-  saveActivityLogsNotification,
-  upsertFunnel,
-  upsertPipeline,
-} from '@/lib/queries'
+import { saveActivityLogsNotification, upsertFunnel, upsertPipeline } from '@/lib/queries'
 import { v4 } from 'uuid'
 import { toast } from '../ui/use-toast'
 import { useModal } from '@/providers/modal-provider'
@@ -75,20 +57,20 @@ const CreatePipelineForm: React.FC<CreatePipelineFormProps> = ({
 
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updates a pipeline | ${response?.name}`,
+        description: `Aktualizoval/a Obchodní Plán | ${response?.name}`,
         subaccountId: subAccountId,
       })
 
       toast({
-        title: 'Success',
-        description: 'Saved pipeline details',
+        title: 'Úspěch',
+        description: 'Informace o Obchodním Plánu byly uloženy',
       })
       router.refresh()
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not save pipeline details',
+        title: 'Opps!',
+        description: 'Informace o Obchodním Plánu nemohly být uloženy',
       })
     }
 
@@ -97,7 +79,7 @@ const CreatePipelineForm: React.FC<CreatePipelineFormProps> = ({
   return (
     <Card className="w-full ">
       <CardHeader>
-        <CardTitle>Pipeline Details</CardTitle>
+        <CardTitle>Informace o Obchodním plánu</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -111,10 +93,10 @@ const CreatePipelineForm: React.FC<CreatePipelineFormProps> = ({
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pipeline Name</FormLabel>
+                  <FormLabel>Jméno Obchodního Plánu</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Name"
+                      placeholder="Jméno"
                       {...field}
                     />
                   </FormControl>
@@ -128,7 +110,7 @@ const CreatePipelineForm: React.FC<CreatePipelineFormProps> = ({
               disabled={isLoading}
               type="submit"
             >
-              {form.formState.isSubmitting ? <Loading /> : 'Save'}
+              {form.formState.isSubmitting ? <Loading /> : 'Uložit'}
             </Button>
           </form>
         </Form>

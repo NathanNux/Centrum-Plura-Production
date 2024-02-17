@@ -19,14 +19,14 @@ const Navigation = ({ user }: Props) => {
           height={40}
           alt="plur logo"
         />
-        <span className="text-xl font-bold"> Plura.</span>
+        <span className="text-xl font-bold"> Centrum.</span>
       </aside>
       <nav className="hidden md:block absolute left-[50%] top-[50%] transform translate-x-[-50%] translate-y-[-50%]">
         <ul className="flex items-center justify-center gap-8">
-          <Link href={'#'}>Pricing</Link>
-          <Link href={'#'}>About</Link>
-          <Link href={'#'}>Documentation</Link>
-          <Link href={'#'}>Features</Link>
+          <Link href={'#'}>Ceník</Link>
+          <Link href={'#'}>O Nás</Link>
+          <Link href={'#'}>Dokumentace</Link>
+          <Link href={'#'}>Služby</Link>
         </ul>
       </nav>
       <aside className="flex gap-2 items-center">
@@ -34,7 +34,7 @@ const Navigation = ({ user }: Props) => {
           href={'/agency'}
           className="bg-primary text-white p-2 px-4 rounded-md hover:bg-primary/80"
         >
-          Login
+          Přihlásit se
         </Link>
         <UserButton />
         <ModeToggle />

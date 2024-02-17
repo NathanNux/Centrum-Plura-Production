@@ -21,8 +21,8 @@ const SubscriptionHelper = ({ customerId, planExists, prices }: Props) => {
     if (plan)
       setOpen(
         <CustomModal
-          title="Upgrade Plan!"
-          subheading="Get started today to get access to premium features"
+          title="Získejte přístup k premium funkcím!"
+          subheading="Začněte dnes a získejte přístup k prémiovým funkcím."
         >
           <SubscriptionFormWrapper
             planExists={planExists}

@@ -1,24 +1,11 @@
 import CircleProgress from '@/components/global/circle-progress'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Separator } from '@/components/ui/separator'
 import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import { AreaChart } from '@tremor/react'
-import {
-  ClipboardIcon,
-  Contact2,
-  DollarSign,
-  Goal,
-  ShoppingCart,
-} from 'lucide-react'
+import { ClipboardIcon, Contact2, DollarSign, Goal, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -28,7 +15,7 @@ const Page = async ({
   params: { agencyId: string }
   searchParams: { code: string }
 }) => {
-  let currency = 'USD'
+  let currency = 'CZK'
   let sessions
   let totalClosedSessions
   let totalPendingSessions
@@ -58,7 +45,7 @@ const Page = async ({
       stripeAccount: agencyDetails.connectAccountId,
     })
 
-    currency = response.default_currency?.toUpperCase() || 'USD'
+    currency = response.default_currency?.toUpperCase() || 'CZK'
     const checkoutSessions = await stripe.checkout.sessions.list(
       {
         created: { gte: startDate, lte: endDate },
@@ -102,9 +89,10 @@ const Page = async ({
         <div className="absolute -top-10 -left-10 right-0 bottom-0 z-30 flex items-center justify-center backdrop-blur-md bg-background/50">
           <Card>
             <CardHeader>
-              <CardTitle>Connect Your Stripe</CardTitle>
+              <CardTitle>Připojte svůj Stripe účet</CardTitle>
               <CardDescription>
-                You need to connect your stripe account to see metrics
+                Je zaptřebí, abyste připojili Váš Stripe účet, abyste mohli vidět
+                své statistiky.
               </CardDescription>
               <Link
                 href={`/agency/${agencyDetails.id}/launchpad`}
@@ -123,53 +111,53 @@ const Page = async ({
         <div className="flex gap-4 flex-col xl:!flex-row">
           <Card className="flex-1 relative">
             <CardHeader>
-              <CardDescription>Income</CardDescription>
+              <CardDescription>Příjem</CardDescription>
               <CardTitle className="text-4xl">
-                {net ? `${currency} ${net.toFixed(2)}` : `$0.00`}
+                {net ? `${currency} ${net.toFixed(2)}` : `0.00 CZK`}
               </CardTitle>
               <small className="text-xs text-muted-foreground">
-                For the year {currentYear}
+                Za rok {currentYear}
               </small>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Total revenue generated as reflected in your stripe dashboard.
+              Celkové výnosy zobrazené ve Vašem Stripe dashboardu.
             </CardContent>
             <DollarSign className="absolute right-4 top-4 text-muted-foreground" />
           </Card>
           <Card className="flex-1 relative">
             <CardHeader>
-              <CardDescription>Potential Income</CardDescription>
+              <CardDescription>Potenciální Příjem</CardDescription>
               <CardTitle className="text-4xl">
                 {potentialIncome
                   ? `${currency} ${potentialIncome.toFixed(2)}`
-                  : `$0.00`}
+                  : `0.00 CZK`}
               </CardTitle>
               <small className="text-xs text-muted-foreground">
-                For the year {currentYear}
+                Za rok {currentYear}
               </small>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              This is how much you can close.
+              Toto je kolik jste mohli vydělat, pokud by všechny transakce byly
+              úspěšné.
             </CardContent>
             <DollarSign className="absolute right-4 top-4 text-muted-foreground" />
           </Card>
           <Card className="flex-1 relative">
             <CardHeader>
-              <CardDescription>Active Clients</CardDescription>
+              <CardDescription>Aktivní Klienti</CardDescription>
               <CardTitle className="text-4xl">{subaccounts.length}</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Reflects the number of sub accounts you own and manage.
+              Reflektuje počet subúčtů, které vlastníte a spravujete.
             </CardContent>
             <Contact2 className="absolute right-4 top-4 text-muted-foreground" />
           </Card>
           <Card className="flex-1 relative">
             <CardHeader>
-              <CardTitle>Agency Goal</CardTitle>
+              <CardTitle>Cíle Centra</CardTitle>
               <CardDescription>
                 <p className="mt-2">
-                  Reflects the number of sub accounts you want to own and
-                  manage.
+                  Reflektuje počet subúčtů, které chcete vlastnit a spravovat.
                 </p>
               </CardDescription>
             </CardHeader>
@@ -177,10 +165,10 @@ const Page = async ({
               <div className="flex flex-col w-full">
                 <div className="flex justify-between items-center">
                   <span className="text-muted-foreground text-sm">
-                    Current: {subaccounts.length}
+                    Aktuální: {subaccounts.length}
                   </span>
                   <span className="text-muted-foreground text-sm">
-                    Goal: {agencyDetails.goal}
+                    Cíl: {agencyDetails.goal}
                   </span>
                 </div>
                 <Progress
@@ -194,7 +182,7 @@ const Page = async ({
         <div className="flex gap-4 xl:!flex-row flex-col">
           <Card className="p-4 flex-1">
             <CardHeader>
-              <CardTitle>Transaction History</CardTitle>
+              <CardTitle>Historie Transakcí</CardTitle>
             </CardHeader>
             <AreaChart
               className="text-sm stroke-primary"
@@ -211,7 +199,7 @@ const Page = async ({
           </Card>
           <Card className="xl:w-[400px] w-full">
             <CardHeader>
-              <CardTitle>Conversions</CardTitle>
+              <CardTitle>Konverce</CardTitle>
             </CardHeader>
             <CardContent>
               <CircleProgress
@@ -220,7 +208,7 @@ const Page = async ({
                   <>
                     {sessions && (
                       <div className="flex flex-col">
-                        Abandoned
+                        Opuštěné
                         <div className="flex gap-2">
                           <ShoppingCart className="text-rose-700" />
                           {sessions.length}
@@ -229,7 +217,7 @@ const Page = async ({
                     )}
                     {totalClosedSessions && (
                       <div className="felx flex-col">
-                        Won Carts
+                        Úspěšné
                         <div className="flex gap-2">
                           <ShoppingCart className="text-emerald-700" />
                           {totalClosedSessions.length}

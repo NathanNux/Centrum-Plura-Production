@@ -1,13 +1,5 @@
 'use client'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet'
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import { useEditor } from '@/providers/editor/editor-provider'
 import clsx from 'clsx'
@@ -54,10 +46,10 @@ const FunnelEditorSidebar = ({ subaccountId }: Props) => {
           <div className="grid gap-4 h-full pb-36 overflow-scroll">
             <TabsContent value="Settings">
               <SheetHeader className="text-left p-6">
-                <SheetTitle>Styles</SheetTitle>
+                <SheetTitle>Styly</SheetTitle>
                 <SheetDescription>
-                  Show your creativity! You can customize every component as you
-                  like.
+                  Buďte kreativní! Můžete upravit každý komponent jak se Vám
+                  líbí.
                 </SheetDescription>
               </SheetHeader>
               <SettingsTab />
@@ -67,9 +59,9 @@ const FunnelEditorSidebar = ({ subaccountId }: Props) => {
             </TabsContent>
             <TabsContent value="Components">
               <SheetHeader className="text-left p-6 ">
-                <SheetTitle>Components</SheetTitle>
+                <SheetTitle>Komponenty</SheetTitle>
                 <SheetDescription>
-                  You can drag and drop components on the canvas
+                  Můžete přetáhnout a položit komponenty na plátno
                 </SheetDescription>
               </SheetHeader>
               <ComponentsTab />

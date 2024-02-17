@@ -4,27 +4,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { v4 } from 'uuid'
-
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useRouter } from 'next/navigation'
 
 import { Input } from '@/components/ui/input'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card'
-
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import FileUpload from '../global/file-upload'
 import { Agency, SubAccount } from '@prisma/client'
 import { useToast } from '../ui/use-toast'
@@ -103,13 +88,13 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
       if (!response) throw new Error('No response from server')
       await saveActivityLogsNotification({
         agencyId: response.agencyId,
-        description: `${userName} | updated sub account | ${response.name}`,
+        description: `${userName} | Aktualizova Subúčet | ${response.name}`,
         subaccountId: response.id,
       })
 
       toast({
-        title: 'Subaccount details saved',
-        description: 'Successfully saved your subaccount details.',
+        title: 'Informace o Subúčtu byly uloženy',
+        description: 'Informace o Subúčtu byly úspěšně uloženy do databáze',
       })
 
       setClose()
@@ -117,8 +102,8 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not save sub account details.',
+        title: 'Opps!',
+        description: 'Informace o Subúčtu nemohly být uloženy',
       })
     }
   }
@@ -134,8 +119,8 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Sub Account Information</CardTitle>
-        <CardDescription>Please enter business details</CardDescription>
+        <CardTitle>Informace o Subúčtu</CardTitle>
+        <CardDescription>Prosím uvědtě Infromace o daném podniku</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -149,7 +134,7 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
               name="subAccountLogo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Account Logo</FormLabel>
+                  <FormLabel>Logo Účtu</FormLabel>
                   <FormControl>
                     <FileUpload
                       apiEndpoint="subaccountLogo"
@@ -168,11 +153,11 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
                 name="name"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Account Name</FormLabel>
+                    <FormLabel>Jméno Účtu</FormLabel>
                     <FormControl>
                       <Input
                         required
-                        placeholder="Your agency name"
+                        placeholder="Jméno Vašeho Centra"
                         {...field}
                       />
                     </FormControl>
@@ -186,10 +171,10 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
                 name="companyEmail"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Acount Email</FormLabel>
+                    <FormLabel>E-mail Účtu</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Email"
+                        placeholder="E-mail"
                         {...field}
                       />
                     </FormControl>
@@ -205,10 +190,10 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
                 name="companyPhone"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Acount Phone Number</FormLabel>
+                    <FormLabel>Telefonní číslo Účtu</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Phone"
+                        placeholder="Tel. číslo"
                         required
                         {...field}
                       />
@@ -225,11 +210,11 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
               name="address"
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel>Adresa</FormLabel>
                   <FormControl>
                     <Input
                       required
-                      placeholder="123 st..."
+                      placeholder="Ulice 123..."
                       {...field}
                     />
                   </FormControl>
@@ -244,11 +229,11 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
                 name="city"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>City</FormLabel>
+                    <FormLabel>Město</FormLabel>
                     <FormControl>
                       <Input
                         required
-                        placeholder="City"
+                        placeholder="Město"
                         {...field}
                       />
                     </FormControl>
@@ -262,11 +247,11 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
                 name="state"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>State</FormLabel>
+                    <FormLabel>Kraj</FormLabel>
                     <FormControl>
                       <Input
                         required
-                        placeholder="State"
+                        placeholder="Kraj"
                         {...field}
                       />
                     </FormControl>
@@ -280,11 +265,11 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
                 name="zipCode"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel>Zipcpde</FormLabel>
+                    <FormLabel>PSČ</FormLabel>
                     <FormControl>
                       <Input
                         required
-                        placeholder="Zipcode"
+                        placeholder="PSČ"
                         {...field}
                       />
                     </FormControl>
@@ -299,11 +284,11 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
               name="country"
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Country</FormLabel>
+                  <FormLabel>Země</FormLabel>
                   <FormControl>
                     <Input
                       required
-                      placeholder="Country"
+                      placeholder="Země"
                       {...field}
                     />
                   </FormControl>
@@ -315,7 +300,7 @@ const SubAccountDetails: React.FC<SubAccountDetailsProps> = ({
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? <Loading /> : 'Save Account Information'}
+              {isLoading ? <Loading /> : 'Uložit Informace o Subúčtu'}
             </Button>
           </form>
         </Form>

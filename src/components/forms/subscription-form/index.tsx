@@ -17,7 +17,7 @@ const SubscriptionForm = ({ selectedPriceId }: Props) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     if (!selectedPriceId) {
-      setPriceError('You need to select a plan to subscribe.')
+      setPriceError('Musíte mít vybraný plán, abyste se mohli přihlásit.')
       return
     }
     setPriceError('')
@@ -35,16 +35,16 @@ const SubscriptionForm = ({ selectedPriceId }: Props) => {
         throw new Error()
       }
       toast({
-        title: 'Payment successfull',
-        description: 'Your payment has been successfully processed. ',
+        title: 'Platba proběhla úspěšně',
+        description: 'Vaše platba byla úspěšně zpracována.',
       })
     } catch (error) {
       console.log(error)
       toast({
         variant: 'destructive',
-        title: 'Payment failed',
+        title: 'Platba selhala',
         description:
-          'We couldnt process your payment. Please try a different card',
+          'Nemohli jsme zpracovat Vaši platbu, zkuste prosím jinou platební kartu',
       })
     }
   }
@@ -57,7 +57,7 @@ const SubscriptionForm = ({ selectedPriceId }: Props) => {
         disabled={!stripeHook}
         className="mt-4 w-full"
       >
-        Submit
+        Potvrdit
       </Button>
     </form>
   )

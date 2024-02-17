@@ -1,23 +1,9 @@
 'use client'
 import React from 'react'
 
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
+import { ColumnDef, flexRender, getCoreRowModel, getFilteredRowModel, useReactTable } from '@tanstack/react-table'
 import { Plus, Search } from 'lucide-react'
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { useModal } from '@/providers/modal-provider'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -52,7 +38,7 @@ export default function FunnelsDataTable<TData, TValue>({
         <div className="flex items-center py-4 gap-2">
           <Search />
           <Input
-            placeholder="Search funnel name..."
+            placeholder="Vyhledat Jméno Funnelu..."
             value={
               (table.getColumn(filterValue)?.getFilterValue() as string) ?? ''
             }
@@ -68,8 +54,8 @@ export default function FunnelsDataTable<TData, TValue>({
             if (modalChildren)
               setOpen(
                 <CustomModal
-                  title="Create A Funnel"
-                  subheading="Funnels are a like websites, but better! Try creating one!"
+                  title="Vytvořit Funnel"
+                  subheading="Funnely jsou jako Webové stránky, ale lepší! Zkuste vytvořit jeden!"
                 >
                   {modalChildren}
                 </CustomModal>
@@ -122,7 +108,7 @@ export default function FunnelsDataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No Results.
+                  Žádné výsledky
                 </TableCell>
               </TableRow>
             )}

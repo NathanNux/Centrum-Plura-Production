@@ -3,25 +3,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { saveActivityLogsNotification, upsertFunnelPage } from '@/lib/queries'
 import { DeviceTypes, useEditor } from '@/providers/editor/editor-provider'
 import { FunnelPage } from '@prisma/client'
 import clsx from 'clsx'
-import {
-  ArrowLeftCircle,
-  EyeIcon,
-  Laptop,
-  Redo2,
-  Smartphone,
-  Tablet,
-  Undo2,
-} from 'lucide-react'
+import { ArrowLeftCircle, EyeIcon, Laptop, Redo2, Smartphone, Tablet, Undo2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { FocusEventHandler, useEffect } from 'react'
@@ -63,13 +50,13 @@ const FunnelEditorNavigation = ({
         funnelId
       )
 
-      toast('Success', {
-        description: 'Saved Funnel Page title',
+      toast('Úspěch', {
+        description: 'Název Stránky Funnelu byl uložen',
       })
       router.refresh()
     } else {
-      toast('Oppse!', {
-        description: 'You need to have a title!',
+      toast('Opps!', {
+        description: 'Musíte mít i Název Stránky Funnelu',
       })
       event.target.value = funnelPageDetails.name
     }
@@ -101,15 +88,15 @@ const FunnelEditorNavigation = ({
       )
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a funnel page | ${response?.name}`,
+        description: `Atualizoval/a stránku Funnelu | ${response?.name}`,
         subaccountId: subaccountId,
       })
-      toast('Success', {
-        description: 'Saved Editor',
+      toast('Úspěch', {
+        description: 'Editor uložen',
       })
     } catch (error) {
-      toast('Oppse!', {
-        description: 'Could not save editor',
+      toast('Opps!', {
+        description: 'Editor se nepodařilo uložit',
       })
     }
   }
@@ -133,7 +120,7 @@ const FunnelEditorNavigation = ({
               onBlur={handleOnBlurTitleChange}
             />
             <span className="text-sm text-muted-foreground">
-              Path: /{funnelPageDetails.pathName}
+              Cesta: /{funnelPageDetails.pathName}
             </span>
           </div>
         </aside>
@@ -160,7 +147,7 @@ const FunnelEditorNavigation = ({
                   </TabsTrigger>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Desktop</p>
+                  <p>PC</p>
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -186,7 +173,7 @@ const FunnelEditorNavigation = ({
                   </TabsTrigger>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Mobile</p>
+                  <p>Mobil</p>
                 </TooltipContent>
               </Tooltip>
             </TabsList>
@@ -228,13 +215,13 @@ const FunnelEditorNavigation = ({
                 disabled
                 defaultChecked={true}
               />
-              Publish
+              Zveřejněno
             </div>
             <span className="text-muted-foreground text-sm">
-              Last updated {funnelPageDetails.updatedAt.toLocaleDateString()}
+              Naposledy Aktualizováno {funnelPageDetails.updatedAt.toLocaleDateString()}
             </span>
           </div>
-          <Button onClick={handleOnSave}>Save</Button>
+          <Button onClick={handleOnSave}>Uložit</Button>
         </aside>
       </nav>
     </TooltipProvider>

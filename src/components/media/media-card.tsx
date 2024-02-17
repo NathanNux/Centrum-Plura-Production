@@ -2,25 +2,8 @@
 import { Media } from '@prisma/client'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Copy, MoreHorizontal, Trash } from 'lucide-react'
 import Image from 'next/image'
 import { deleteMedia, saveActivityLogsNotification } from '@/lib/queries'
@@ -67,11 +50,11 @@ const MediaCard = ({ file }: Props) => {
                 toast({ title: 'Copied To Clipboard' })
               }}
             >
-              <Copy size={15} /> Copy Image Link
+              <Copy size={15} /> Kopírovat Link Obrázku
             </DropdownMenuItem>
             <AlertDialogTrigger asChild>
               <DropdownMenuItem className="flex gap-2">
-                <Trash size={15} /> Delete File
+                <Trash size={15} /> Smazat Soubor
               </DropdownMenuItem>
             </AlertDialogTrigger>
           </DropdownMenuContent>
@@ -80,15 +63,16 @@ const MediaCard = ({ file }: Props) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-left">
-            Are you absolutely sure?
+            Jste si opravdu jisti?
           </AlertDialogTitle>
           <AlertDialogDescription className="text-left">
-            Are you sure you want to delete this file? All subaccount using this
-            file will no longer have access to it!
+            Tato akce je nevratná! Po odstranění souboru ho nemůžete obnovit.
+            Všechný subúčty, které tento soubor používají, ztratí přístup k tomuto
+            souboru!
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter className="flex items-center">
-          <AlertDialogCancel className="mb-2">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="mb-2">Zrušit</AlertDialogCancel>
           <AlertDialogAction
             disabled={loading}
             className="bg-destructive hover:bg-destructive"
@@ -97,18 +81,18 @@ const MediaCard = ({ file }: Props) => {
               const response = await deleteMedia(file.id)
               await saveActivityLogsNotification({
                 agencyId: undefined,
-                description: `Deleted a media file | ${response?.name}`,
+                description: `Smazal/a média soubor | ${response?.name}`,
                 subaccountId: response.subAccountId,
               })
               toast({
-                title: 'Deleted File',
-                description: 'Successfully deleted the file',
+                title: 'Soubor Smazán',
+                description: 'Soubor byl úspěšně smazán',
               })
               setLoading(false)
               router.refresh()
             }}
           >
-            Delete
+            Smazat
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

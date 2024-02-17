@@ -1,23 +1,7 @@
 import { AlertDescription } from '@/components/ui/alert'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '@/components/ui/command'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { getAuthUserDetails } from '@/lib/queries'
 import { SubAccount } from '@prisma/client'
 import Image from 'next/image'
@@ -44,9 +28,9 @@ const AllSubaccountsPage = async ({ params }: Props) => {
           className="w-[200px] self-end m-6"
         />
         <Command className="rounded-lg bg-transparent">
-          <CommandInput placeholder="Search Account..." />
+          <CommandInput placeholder="Prohledat účty" />
           <CommandList>
-            <CommandEmpty>No Results Found.</CommandEmpty>
+            <CommandEmpty> Žádné výsledky.</CommandEmpty>
             <CommandGroup heading="Sub Accounts">
               {!!user.Agency?.SubAccount.length ? (
                 user.Agency.SubAccount.map((subaccount: SubAccount) => (
@@ -81,22 +65,22 @@ const AllSubaccountsPage = async ({ params }: Props) => {
                         variant={'destructive'}
                         className="w-20 hover:bg-red-600 hover:text-white !text-white"
                       >
-                        Delete
+                        Smazat
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle className="text-left">
-                          Are your absolutely sure
+                          Jste si opravdu jisti
                         </AlertDialogTitle>
                         <AlertDescription className="text-left">
-                          This action cannot be undon. This will delete the
-                          subaccount and all data related to the subaccount.
+                          Tato akce nelze vrátit. Tímto se smaže subúčet a všechna
+                          data související s subúčtem.
                         </AlertDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter className="flex items-center">
                         <AlertDialogCancel className="mb-2">
-                          Cancel
+                          Zrušit
                         </AlertDialogCancel>
                         <AlertDialogAction className="bg-destructive hover:bg-destructive">
                           <DeleteButton subaccountId={subaccount.id} />
@@ -107,7 +91,7 @@ const AllSubaccountsPage = async ({ params }: Props) => {
                 ))
               ) : (
                 <div className="text-muted-foreground text-center p-4">
-                  No Sub accounts
+                  Žádné subúčty
                 </div>
               )}
             </CommandGroup>

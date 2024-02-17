@@ -62,8 +62,8 @@ const SubscriptionFormWrapper = ({ customerId, planExists }: Props) => {
       })
       if (planExists) {
         toast({
-          title: 'Success',
-          description: 'Your plan has been successfully upgraded!',
+          title: 'Úspěch',
+          description: 'Váš plán byl úspěšně zlepšen!',
         })
         setClose()
         router.refresh()
@@ -105,7 +105,7 @@ const SubscriptionFormWrapper = ({ customerId, planExists }: Props) => {
 
         {options.clientSecret && !planExists && (
           <>
-            <h1 className="text-xl">Payment Method</h1>
+            <h1 className="text-xl">Platevní metoda</h1>
             <Elements
               stripe={getStripe()}
               options={options}

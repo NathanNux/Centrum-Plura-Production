@@ -1,25 +1,7 @@
-import {
-  Contact,
-  Lane,
-  Notification,
-  Prisma,
-  Role,
-  Tag,
-  Ticket,
-  User,
-} from '@prisma/client'
-import {
-  _getTicketsWithAllRelations,
-  getAuthUserDetails,
-  getFunnels,
-  getMedia,
-  getPipelineDetails,
-  getTicketsWithTags,
-  getUserPermissions,
-} from './queries'
+import { Contact, Lane, Notification, Prisma, Role, Tag, Ticket, User } from '@prisma/client'
+import { _getTicketsWithAllRelations, getAuthUserDetails, getFunnels, getMedia, getPipelineDetails, getTicketsWithTags, getUserPermissions } from './queries'
 import { db } from './db'
 import { z } from 'zod'
-
 import Stripe from 'stripe'
 
 export type NotificationWithUser =
@@ -107,7 +89,7 @@ export const TicketFormSchema = z.object({
   name: z.string().min(1),
   description: z.string().optional(),
   value: z.string().refine((value) => currencyNumberRegex.test(value), {
-    message: 'Value must be a valid price.',
+    message: 'Cena musí být validní.',
   }),
 })
 

@@ -5,21 +5,8 @@ import { useToast } from '../ui/use-toast'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '../ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { createMedia, saveActivityLogsNotification } from '@/lib/queries'
 import { Input } from '../ui/input'
 import FileUpload from '../global/file-upload'
@@ -30,8 +17,8 @@ type Props = {
 }
 
 const formSchema = z.object({
-  link: z.string().min(1, { message: 'Media File is required' }),
-  name: z.string().min(1, { message: 'Name is required' }),
+  link: z.string().min(1, { message: 'Jméno Média souboru je povinné' }),
+  name: z.string().min(1, { message: 'Jméno je povinné' }),
 })
 
 const UploadMediaForm = ({ subaccountId }: Props) => {
@@ -51,18 +38,18 @@ const UploadMediaForm = ({ subaccountId }: Props) => {
       const response = await createMedia(subaccountId, values)
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Uploaded a media file | ${response.name}`,
+        description: `Nahrál/a Média soubor | ${response.name}`,
         subaccountId,
       })
 
-      toast({ title: 'Succes', description: 'Uploaded media' })
+      toast({ title: 'Úspěch', description: 'Média Soubor nahrán' })
       router.refresh()
     } catch (error) {
       console.log(error)
       toast({
         variant: 'destructive',
-        title: 'Failed',
-        description: 'Could not uploaded media',
+        title: 'Chyba',
+        description: 'Média Soubor nemohl být nahrán',
       })
     }
   }
@@ -70,9 +57,9 @@ const UploadMediaForm = ({ subaccountId }: Props) => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Media Information</CardTitle>
+        <CardTitle>Informace o Média Souboru</CardTitle>
         <CardDescription>
-          Please enter the details for your file
+          Prosím vyplňte detaily o souboru
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -83,10 +70,10 @@ const UploadMediaForm = ({ subaccountId }: Props) => {
               name="name"
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>File Name</FormLabel>
+                  <FormLabel>Jméno souboru</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Your agency name"
+                      placeholder="Jméno Vašeho souboru"
                       {...field}
                     />
                   </FormControl>
@@ -100,7 +87,7 @@ const UploadMediaForm = ({ subaccountId }: Props) => {
               name="link"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Media File</FormLabel>
+                  <FormLabel>Média Soubor</FormLabel>
                   <FormControl>
                     <FileUpload
                       apiEndpoint="subaccountLogo"
@@ -116,7 +103,7 @@ const UploadMediaForm = ({ subaccountId }: Props) => {
               type="submit"
               className="mt-4"
             >
-              Upload Media
+              Nahrát Soubor
             </Button>
           </form>
         </Form>

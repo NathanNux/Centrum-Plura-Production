@@ -17,15 +17,15 @@ const MediaUploadButton = ({ subaccountId }: Props) => {
       onClick={() => {
         setOpen(
           <CustomModal
-            title="Upload Media"
-            subheading="Upload a file to your media bucket"
+            title="Nahrajte Média soubor"
+            subheading="Nahraný soubor bude dostupný v Media sekci."
           >
             <UploadMediaForm subaccountId={subaccountId}></UploadMediaForm>
           </CustomModal>
         )
       }}
     >
-      Upload
+      Nahrát Soubor
     </Button>
   )
 }

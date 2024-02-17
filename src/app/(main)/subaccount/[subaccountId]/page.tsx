@@ -3,23 +3,9 @@ import CircleProgress from '@/components/global/circle-progress'
 import PipelineValue from '@/components/global/pipeline-value'
 import SubaccountFunnelChart from '@/components/global/subaccount-funnel-chart'
 import { Badge } from '@/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import { AreaChart, BadgeDelta } from '@tremor/react'
@@ -35,7 +21,7 @@ type Props = {
 }
 
 const SubaccountPageId = async ({ params, searchParams }: Props) => {
-  let currency = 'USD'
+  let currency = 'CZK'
   let sessions
   let totalClosedSessions
   let totalPendingSessions
@@ -59,7 +45,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
     const response = await stripe.accounts.retrieve({
       stripeAccount: subaccountDetails.connectAccountId,
     })
-    currency = response.default_currency?.toUpperCase() || 'USD'
+    currency = response.default_currency?.toUpperCase() || 'CZK'
     const checkoutSessions = await stripe.checkout.sessions.list(
       { created: { gte: startDate, lte: endDate }, limit: 100 },
       {
@@ -128,9 +114,9 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
           <div className="absolute -top-10 -left-10 right-0 bottom-0 z-30 flex items-center justify-center backdrop-blur-md bg-background/50">
             <Card>
               <CardHeader>
-                <CardTitle>Connect Your Stripe</CardTitle>
+                <CardTitle>Připojte si svůj Stripe účet</CardTitle>
                 <CardDescription>
-                  You need to connect your stripe account to see metrics
+                  Pro zobrazení metrik musíte připojit svůj Stripe účet
                 </CardDescription>
                 <Link
                   href={`/subaccount/${subaccountDetails.id}/launchpad`}
@@ -147,33 +133,33 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
           <div className="flex gap-4 flex-col xl:!flex-row">
             <Card className="flex-1 relative">
               <CardHeader>
-                <CardDescription>Income</CardDescription>
+                <CardDescription>Příjem</CardDescription>
                 <CardTitle className="text-4xl">
-                  {net ? `${currency} ${net.toFixed(2)}` : `$0.00`}
+                  {net ? `${currency} ${net.toFixed(2)}` : `0.00 CZK`}
                 </CardTitle>
                 <small className="text-xs text-muted-foreground">
-                  For the year {currentYear}
+                  Za rok {currentYear}
                 </small>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Total revenue generated as reflected in your stripe dashboard.
+                Celkový příjem zobrazený ve Vašem stripe dashboardu.
               </CardContent>
               <DollarSign className="absolute right-4 top-4 text-muted-foreground" />
             </Card>
             <Card className="flex-1 relative">
               <CardHeader>
-                <CardDescription>Potential Income</CardDescription>
+                <CardDescription>Potenciální Příjem</CardDescription>
                 <CardTitle className="text-4xl">
                   {potentialIncome
                     ? `${currency} ${potentialIncome.toFixed(2)}`
-                    : `$0.00`}
+                    : `0.00 CZK`}
                 </CardTitle>
                 <small className="text-xs text-muted-foreground">
-                  For the year {currentYear}
+                  Za rok {currentYear}
                 </small>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                This is how much you can close.
+                Očekávané příjmy v budoucnu, které můžete získat.
               </CardContent>
               <Contact2 className="absolute right-4 top-4 text-muted-foreground" />
             </Card>
@@ -181,14 +167,14 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
 
             <Card className="xl:w-fit">
               <CardHeader>
-                <CardDescription>Conversions</CardDescription>
+                <CardDescription>Koverce</CardDescription>
                 <CircleProgress
                   value={closingRate}
                   description={
                     <>
                       {sessions && (
                         <div className="flex flex-col">
-                          Total Carts Opened
+                          Včechny otevřené koverce
                           <div className="flex gap-2">
                             <ShoppingCart className="text-rose-700" />
                             {sessions.length}
@@ -197,7 +183,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
                       )}
                       {totalClosedSessions && (
                         <div className="flex flex-col">
-                          Won Carts
+                          Úspěšné Konverce
                           <div className="flex gap-2">
                             <ShoppingCart className="text-emerald-700" />
                             {totalClosedSessions.length}
@@ -214,20 +200,19 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
           <div className="flex gap-4 flex-col xl:!flex-row">
             <Card className="relative">
               <CardHeader>
-                <CardDescription>Funnel Performance</CardDescription>
+                <CardDescription>Statistiky Funnely</CardDescription>
               </CardHeader>
               <CardContent className=" text-sm text-muted-foreground flex flex-col gap-12 justify-between ">
                 <SubaccountFunnelChart data={funnelPerformanceMetrics} />
                 <div className="lg:w-[150px]">
-                  Total page visits across all funnels. Hover over to get more
-                  details on funnel page performance.
+                  Celková návštěvnost všech funnelů. Přejeďte myší pro více informací.
                 </div>
               </CardContent>
               <Contact2 className="absolute right-4 top-4 text-muted-foreground" />
             </Card>
             <Card className="p-4 flex-1">
               <CardHeader>
-                <CardTitle>Checkout Activity</CardTitle>
+                <CardTitle>Aktivita Pokladny</CardTitle>
               </CardHeader>
               <AreaChart
                 className="text-sm stroke-primary"
@@ -244,23 +229,23 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
             <Card className="p-4 flex-1 h-[450px] overflow-scroll relative">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  Transition History
+                  Historie Transakcí
                   <BadgeDelta
                     className="rounded-xl bg-transparent"
                     deltaType="moderateIncrease"
                     isIncreasePositive={true}
                     size="xs"
                   >
-                    +12.3%
+                    +13.6%
                   </BadgeDelta>
                 </CardTitle>
                 <Table>
                   <TableHeader className="!sticky !top-0">
                     <TableRow>
-                      <TableHead className="w-[300px]">Email</TableHead>
+                      <TableHead className="w-[300px]">E-mail</TableHead>
                       <TableHead className="w-[200px]">Status</TableHead>
-                      <TableHead>Created Date</TableHead>
-                      <TableHead className="text-right">Value</TableHead>
+                      <TableHead>Datum Vytvoření</TableHead>
+                      <TableHead className="text-right">Cena</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody className="font-medium truncate">
@@ -272,7 +257,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
                             </TableCell>
                             <TableCell>
                               <Badge className="bg-emerald-500 dark:text-black">
-                                Paid
+                                Zaplaceno
                               </Badge>
                             </TableCell>
                             <TableCell>
@@ -287,7 +272,7 @@ const SubaccountPageId = async ({ params, searchParams }: Props) => {
                             </TableCell>
                           </TableRow>
                         ))
-                      : 'No Data'}
+                      : 'Žádná Data'}
                   </TableBody>
                 </Table>
               </CardHeader>

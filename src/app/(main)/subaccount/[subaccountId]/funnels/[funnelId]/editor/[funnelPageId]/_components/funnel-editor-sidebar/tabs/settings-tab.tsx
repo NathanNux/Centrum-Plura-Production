@@ -8,31 +8,9 @@ import {
 } from '@/components/ui/accordion'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  AlignCenter,
-  AlignHorizontalJustifyCenterIcon,
-  AlignHorizontalJustifyEndIcon,
-  AlignHorizontalJustifyStart,
-  AlignHorizontalSpaceAround,
-  AlignHorizontalSpaceBetween,
-  AlignJustify,
-  AlignLeft,
-  AlignRight,
-  AlignVerticalJustifyCenter,
-  AlignVerticalJustifyStart,
-  ChevronsLeftRightIcon,
-  LucideImageDown,
-} from 'lucide-react'
+import { AlignCenter, AlignHorizontalJustifyCenterIcon, AlignHorizontalJustifyEndIcon, AlignHorizontalJustifyStart, AlignHorizontalSpaceAround, AlignHorizontalSpaceBetween, AlignJustify, AlignLeft, AlignRight, AlignVerticalJustifyCenter, AlignVerticalJustifyStart, ChevronsLeftRightIcon, LucideImageDown } from 'lucide-react'
 import { Tabs, TabsTrigger, TabsList } from '@/components/ui/tabs'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useEditor } from '@/providers/editor/editor-provider'
 import { Slider } from '@/components/ui/slider'
 
@@ -93,12 +71,12 @@ const SettingsTab = (props: Props) => {
         value="Custom"
         className="px-6 py-0  "
       >
-        <AccordionTrigger className="!no-underline">Custom</AccordionTrigger>
+        <AccordionTrigger className="!no-underline">Vlastní</AccordionTrigger>
         <AccordionContent>
           {state.editor.selectedElement.type === 'link' &&
             !Array.isArray(state.editor.selectedElement.content) && (
               <div className="flex flex-col gap-2">
-                <p className="text-muted-foreground">Link Path</p>
+                <p className="text-muted-foreground">Cesta Odkazu</p>
                 <Input
                   id="href"
                   placeholder="https:domain.example.com/pathname"
@@ -114,11 +92,11 @@ const SettingsTab = (props: Props) => {
         className="px-6 py-0  border-y-[1px]"
       >
         <AccordionTrigger className="!no-underline">
-          Typography
+          Typografie
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-2 ">
           <div className="flex flex-col gap-2 ">
-            <p className="text-muted-foreground">Text Align</p>
+            <p className="text-muted-foreground">Zarovnání Textu</p>
             <Tabs
               onValueChange={(e) =>
                 handleOnChanges({
@@ -159,7 +137,7 @@ const SettingsTab = (props: Props) => {
             </Tabs>
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-muted-foreground">Font Family</p>
+            <p className="text-muted-foreground">Hlavní Font</p>
             <Input
               id="DM Sans"
               onChange={handleOnChanges}
@@ -167,7 +145,7 @@ const SettingsTab = (props: Props) => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <p className="text-muted-foreground">Color</p>
+            <p className="text-muted-foreground">Barva</p>
             <Input
               id="color"
               onChange={handleOnChanges}
@@ -176,7 +154,7 @@ const SettingsTab = (props: Props) => {
           </div>
           <div className="flex gap-4">
             <div>
-              <Label className="text-muted-foreground">Weight</Label>
+              <Label className="text-muted-foreground">Tloušťka</Label>
               <Select
                 onValueChange={(e) =>
                   handleOnChanges({
@@ -192,16 +170,16 @@ const SettingsTab = (props: Props) => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>Font Weights</SelectLabel>
-                    <SelectItem value="bold">Bold</SelectItem>
-                    <SelectItem value="normal">Regular</SelectItem>
-                    <SelectItem value="lighter">Light</SelectItem>
+                    <SelectLabel>Tloušťky Fontu</SelectLabel>
+                    <SelectItem value="bold">Tlustý</SelectItem>
+                    <SelectItem value="normal">Běžný</SelectItem>
+                    <SelectItem value="lighter">Tenký</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label className="text-muted-foreground">Size</Label>
+              <Label className="text-muted-foreground">Velikost</Label>
               <Input
                 placeholder="px"
                 id="fontSize"
@@ -217,7 +195,7 @@ const SettingsTab = (props: Props) => {
         className=" px-6 py-0 "
       >
         <AccordionTrigger className="!no-underline">
-          Dimensions
+          Dimence
         </AccordionTrigger>
         <AccordionContent>
           <div className="flex flex-col gap-4">
@@ -225,7 +203,7 @@ const SettingsTab = (props: Props) => {
               <div className="flex gap-4 flex-col">
                 <div className="flex gap-4">
                   <div>
-                    <Label className="text-muted-foreground">Height</Label>
+                    <Label className="text-muted-foreground">Výška</Label>
                     <Input
                       id="height"
                       placeholder="px"
@@ -234,7 +212,7 @@ const SettingsTab = (props: Props) => {
                     />
                   </div>
                   <div>
-                    <Label className="text-muted-foreground">Width</Label>
+                    <Label className="text-muted-foreground">Šířka</Label>
                     <Input
                       placeholder="px"
                       id="width"
@@ -248,7 +226,7 @@ const SettingsTab = (props: Props) => {
               <div className="flex gap-4 flex-col">
                 <div className="flex gap-4">
                   <div>
-                    <Label className="text-muted-foreground">Top</Label>
+                    <Label className="text-muted-foreground">Nahoře</Label>
                     <Input
                       id="marginTop"
                       placeholder="px"
@@ -257,7 +235,7 @@ const SettingsTab = (props: Props) => {
                     />
                   </div>
                   <div>
-                    <Label className="text-muted-foreground">Bottom</Label>
+                    <Label className="text-muted-foreground">Dole</Label>
                     <Input
                       placeholder="px"
                       id="marginBottom"
@@ -268,7 +246,7 @@ const SettingsTab = (props: Props) => {
                 </div>
                 <div className="flex gap-4">
                   <div>
-                    <Label className="text-muted-foreground">Left</Label>
+                    <Label className="text-muted-foreground">Vlevo</Label>
                     <Input
                       placeholder="px"
                       id="marginLeft"
@@ -277,7 +255,7 @@ const SettingsTab = (props: Props) => {
                     />
                   </div>
                   <div>
-                    <Label className="text-muted-foreground">Right</Label>
+                    <Label className="text-muted-foreground">Vpravo</Label>
                     <Input
                       placeholder="px"
                       id="marginRight"
@@ -293,7 +271,7 @@ const SettingsTab = (props: Props) => {
               <div className="flex gap-4 flex-col">
                 <div className="flex gap-4">
                   <div>
-                    <Label className="text-muted-foreground">Top</Label>
+                    <Label className="text-muted-foreground">Nahoře</Label>
                     <Input
                       placeholder="px"
                       id="paddingTop"
@@ -302,7 +280,7 @@ const SettingsTab = (props: Props) => {
                     />
                   </div>
                   <div>
-                    <Label className="text-muted-foreground">Bottom</Label>
+                    <Label className="text-muted-foreground">Dole</Label>
                     <Input
                       placeholder="px"
                       id="paddingBottom"
@@ -313,7 +291,7 @@ const SettingsTab = (props: Props) => {
                 </div>
                 <div className="flex gap-4">
                   <div>
-                    <Label className="text-muted-foreground">Left</Label>
+                    <Label className="text-muted-foreground">Vlevo</Label>
                     <Input
                       placeholder="px"
                       id="paddingLeft"
@@ -322,7 +300,7 @@ const SettingsTab = (props: Props) => {
                     />
                   </div>
                   <div>
-                    <Label className="text-muted-foreground">Right</Label>
+                    <Label className="text-muted-foreground">Vpravo</Label>
                     <Input
                       placeholder="px"
                       id="paddingRight"
@@ -341,11 +319,11 @@ const SettingsTab = (props: Props) => {
         className="px-6 py-0 "
       >
         <AccordionTrigger className="!no-underline">
-          Decorations
+          Dekorace
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4">
           <div>
-            <Label className="text-muted-foreground">Opacity</Label>
+            <Label className="text-muted-foreground">Viditelnost</Label>
             <div className="flex items-center justify-end">
               <small className="p-2">
                 {typeof state.editor.selectedElement.styles?.opacity ===
@@ -382,7 +360,7 @@ const SettingsTab = (props: Props) => {
             />
           </div>
           <div>
-            <Label className="text-muted-foreground">Border Radius</Label>
+            <Label className="text-muted-foreground">Radius Okrajů</Label>
             <div className="flex items-center justify-end">
               <small className="">
                 {typeof state.editor.selectedElement.styles?.borderRadius ===
@@ -420,7 +398,7 @@ const SettingsTab = (props: Props) => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label className="text-muted-foreground">Background Color</Label>
+            <Label className="text-muted-foreground">Barva Pozadí</Label>
             <div className="flex  border-[1px] rounded-md overflow-clip">
               <div
                 className="w-12 "
@@ -439,7 +417,7 @@ const SettingsTab = (props: Props) => {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Label className="text-muted-foreground">Background Image</Label>
+            <Label className="text-muted-foreground">Obrázek Pozadí</Label>
             <div className="flex  border-[1px] rounded-md overflow-clip">
               <div
                 className="w-12 "
@@ -458,7 +436,7 @@ const SettingsTab = (props: Props) => {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Label className="text-muted-foreground">Image Position</Label>
+            <Label className="text-muted-foreground">Pozice Obrázku</Label>
             <Tabs
               onValueChange={(e) =>
                 handleOnChanges({
@@ -500,7 +478,7 @@ const SettingsTab = (props: Props) => {
       >
         <AccordionTrigger className="!no-underline">Flexbox</AccordionTrigger>
         <AccordionContent>
-          <Label className="text-muted-foreground">Justify Content</Label>
+          <Label className="text-muted-foreground">Zarovnat Obsah</Label>
           <Tabs
             onValueChange={(e) =>
               handleOnChanges({
@@ -545,7 +523,7 @@ const SettingsTab = (props: Props) => {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <Label className="text-muted-foreground">Align Items</Label>
+          <Label className="text-muted-foreground">Zarovnat Položky</Label>
           <Tabs
             onValueChange={(e) =>
               handleOnChanges({
@@ -590,7 +568,7 @@ const SettingsTab = (props: Props) => {
             <Label className="text-muted-foreground">Flex</Label>
           </div>
           <div>
-            <Label className="text-muted-foreground"> Direction</Label>
+            <Label className="text-muted-foreground">Směr</Label>
             <Input
               placeholder="px"
               id="flexDirection"

@@ -12,21 +12,11 @@ import { FunnelPage } from '@prisma/client'
 import { Check, ExternalLink, LucideEdit } from 'lucide-react'
 import React, { useState } from 'react'
 
-import {
-  DragDropContext,
-  DragStart,
-  DropResult,
-  Droppable,
-} from 'react-beautiful-dnd'
+import { DragDropContext, DragStart, DropResult, Droppable } from 'react-beautiful-dnd'
 import Link from 'next/link'
 import FunnelPagePlaceholder from '@/components/icons/funnel-page-placeholder'
 
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import FunnelStepCard from './funnel-step-card'
 
 type Props = {
@@ -83,16 +73,16 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
         console.log(error)
         toast({
           variant: 'destructive',
-          title: 'Failed',
-          description: 'Could not save page order',
+          title: 'Chyba',
+          description: 'Pořadí stránek se nepodařilo uložit ',
         })
         return
       }
     })
 
     toast({
-      title: 'Success',
-      description: 'Saved page order',
+      title: 'Úspěch',
+      description: 'Pořadí stránek bylo uloženo',
     })
   }
 
@@ -103,7 +93,7 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
           <ScrollArea className="h-full ">
             <div className="flex gap-4 items-center">
               <Check />
-              Funnel Steps
+              Kroky Funnelu
             </div>
             {pagesState.length ? (
               <DragDropContext
@@ -140,7 +130,7 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
               </DragDropContext>
             ) : (
               <div className="text-center text-muted-foreground py-6">
-                No Pages
+                Žádné Stránky
               </div>
             )}
           </ScrollArea>
@@ -161,14 +151,14 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
               )
             }}
           >
-            Create New Steps
+            Vytvořit nové Kroky
           </Button>
         </aside>
         <aside className="flex-[0.7] bg-muted p-4 ">
           {!!pages.length ? (
             <Card className="h-full flex justify-between flex-col">
               <CardHeader>
-                <p className="text-sm text-muted-foreground">Page name</p>
+                <p className="text-sm text-muted-foreground">Jméno stránky</p>
                 <CardTitle>{clickedPage?.name}</CardTitle>
                 <CardDescription className="flex flex-col gap-4">
                   <div className="border-2 rounded-lg sm:w-80 w-full  overflow-clip">
@@ -210,7 +200,7 @@ const FunnelSteps = ({ funnel, funnelId, pages, subaccountId }: Props) => {
             </Card>
           ) : (
             <div className="h-[600px] flex items-center justify-center text-muted-foreground">
-              Create a page to view page settings.
+              Vytvořte stránku pro zobrazení nastavení stránky.
             </div>
           )}
         </aside>

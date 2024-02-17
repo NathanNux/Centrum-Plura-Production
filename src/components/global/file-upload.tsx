@@ -34,7 +34,7 @@ const FileUpload = ({ apiEndpoint, onChange, value }: Props) => {
               rel="noopener_noreferrer"
               className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
             >
-              View PDF
+              Zobrazit PDF
             </a>
           </div>
         )}
@@ -44,7 +44,7 @@ const FileUpload = ({ apiEndpoint, onChange, value }: Props) => {
           type="button"
         >
           <X className="h-4 w-4" />
-          Remove Logo
+          Smazat Logo
         </Button>
       </div>
     )

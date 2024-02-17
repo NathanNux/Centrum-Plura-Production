@@ -1,11 +1,5 @@
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { db } from '@/lib/db'
 import { getStripeOAuthLink } from '@/lib/utils'
 import { CheckCircleIcon } from 'lucide-react'
@@ -60,7 +54,7 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
         })
         connectedStripeAccount = true
       } catch (error) {
-        console.log('🔴 Could not connect stripe account')
+        console.log('🔴 Stripe účet nemohl být připojen')
       }
     }
   }
@@ -70,9 +64,9 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
       <div className="w-full h-full max-w-[800px]">
         <Card className="border-none">
           <CardHeader>
-            <CardTitle>Lets get started!</CardTitle>
+            <CardTitle>Pojďme začít</CardTitle>
             <CardDescription>
-              Follow the steps below to get your account setup.
+              Následujte kroky níže, abyste mohli nastavit svůj účet.
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
@@ -85,9 +79,9 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
                   width={80}
                   className="rounded-md object-contain"
                 />
-                <p> Save the website as a shortcut on your mobile device</p>
+                <p>Uložte si stránku jako zkratku na vašem mobilním zařízení.</p>
               </div>
-              <Button>Start</Button>
+              <Button>Začít</Button>
             </div>
             <div className="flex justify-between items-center w-full border p-4 rounded-lg gap-2">
               <div className="flex md:items-center gap-4 flex-col md:!flex-row">
@@ -99,8 +93,8 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
                   className="rounded-md object-contain"
                 />
                 <p>
-                  Connect your stripe account to accept payments and see your
-                  dashboard.
+                  Připojte si svůj účet Stripe, abyste mohli přijímat platby a
+                  vidět svůj dashboard.
                 </p>
               </div>
               {agencyDetails.connectAccountId || connectedStripeAccount ? (
@@ -113,7 +107,7 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
                   className="bg-primary py-2 px-4 rounded-md text-white"
                   href={stripeOAuthLink}
                 >
-                  Start
+                  Začít
                 </Link>
               )}
             </div>
@@ -126,7 +120,7 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
                   width={80}
                   className="rounded-md object-contain"
                 />
-                <p> Fill in all your bussiness details</p>
+                <p>Doplňte si všechny informace o Vašem podniku</p>
               </div>
               {allDetailsExist ? (
                 <CheckCircleIcon
@@ -138,7 +132,7 @@ const LaunchPadPage = async ({ params, searchParams }: Props) => {
                   className="bg-primary py-2 px-4 rounded-md text-white"
                   href={`/agency/${params.agencyId}/settings`}
                 >
-                  Start
+                  Začít
                 </Link>
               )}
             </div>

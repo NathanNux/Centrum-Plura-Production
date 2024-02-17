@@ -25,20 +25,20 @@ const Page = async ({
       if (searchParams.state) {
         const statePath = searchParams.state.split('___')[0]
         const stateAgencyId = searchParams.state.split('___')[1]
-        if (!stateAgencyId) return <div>Not authorized</div>
+        if (!stateAgencyId) return <div>Neoprávněný přístup</div>
         return redirect(
           `/agency/${stateAgencyId}/${statePath}?code=${searchParams.code}`
         )
       } else return redirect(`/agency/${agencyId}`)
     } else {
-      return <div>Not authorized</div>
+      return <div>Neoprávněný přístup</div>
     }
   }
   const authUser = await currentUser()
   return (
     <div className="flex justify-center items-center mt-4">
       <div className="max-w-[850px] border-[1px] p-4 rounded-xl">
-        <h1 className="text-4xl"> Create An Agency</h1>
+        <h1 className="text-4xl">Založit Centrum</h1>
         <AgencyDetails
           data={{ companyEmail: authUser?.emailAddresses[0].emailAddress }}
         />

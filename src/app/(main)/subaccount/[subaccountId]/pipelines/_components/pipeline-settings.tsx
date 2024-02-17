@@ -4,18 +4,8 @@ import PipelineInfobar from './pipeline-infobar'
 import { Pipeline } from '@prisma/client'
 import CreatePipelineForm from '@/components/forms/create-pipeline-form'
 import { Button } from '@/components/ui/button'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { deletePipeline } from '@/lib/queries'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
+import { deletePipeline, saveActivityLogsNotification } from '@/lib/queries'
 import { toast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
 
@@ -34,38 +24,43 @@ const PipelineSettings = ({
       <div>
         <div className="flex items-center justify-between mb-4">
           <AlertDialogTrigger asChild>
-            <Button variant={'destructive'}>Delete Pipeline</Button>
+            <Button variant={'destructive'}>Smazat Obchodí Plán</Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>Jste si opravdu jisti?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
+                Tato akce nelze vrátit. Tímto se smaže obchodní plán a všechna
+                data související s ním.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter className="items-center">
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogCancel>Zrušit</AlertDialogCancel>
               <AlertDialogAction
                 onClick={async () => {
                   try {
+                    // Create a new notification
+                    await saveActivityLogsNotification({
+                      agencyId: undefined, // replace with the actual agency ID
+                      description: `Obchodní plán smazán | ${pipelineId}`, // replace with the actual pipeline ID or name
+                      subaccountId, // replace with the actual subaccount ID
+                    })
                     await deletePipeline(pipelineId)
-                    //Challenge: Activity log
                     toast({
-                      title: 'Deleted',
-                      description: 'Pipeline is deleted',
+                      title: 'Smazáno',
+                      description: 'Obchodní Plán smazán',
                     })
                     router.replace(`/subaccount/${subaccountId}/pipelines`)
                   } catch (error) {
                     toast({
                       variant: 'destructive',
-                      title: 'Oppse!',
-                      description: 'Could Delete Pipeline',
+                      title: 'Opps!',
+                      description: 'Obchodní plán nemohl být smazán',
                     })
                   }
                 }}
               >
-                Delete
+                Smazat
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

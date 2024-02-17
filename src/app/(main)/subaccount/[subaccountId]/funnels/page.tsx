@@ -16,7 +16,7 @@ const Funnels = async ({ params }: { params: { subaccountId: string } }) => {
         actionButtonText={
           <>
             <Plus size={15} />
-            Create Funnel
+            Vytvořit Funnel
           </>
         }
         modalChildren={

@@ -36,8 +36,8 @@ const CreateSubaccountButton = ({ className, id, user }: Props) => {
       onClick={() => {
         setOpen(
           <CustomModal
-            title="Create a Subaccount"
-            subheading="You can switch bettween"
+            title="Vytvořit subúčet"
+            subheading="Můžete střídat mezi subúčty a spravovat je zde."
           >
             <SubAccountDetails
               agencyDetails={agencyDetails}
@@ -49,7 +49,7 @@ const CreateSubaccountButton = ({ className, id, user }: Props) => {
       }}
     >
       <PlusCircleIcon size={15} />
-      Create Sub Account
+      Vytvořit subúčet
     </Button>
   )
 }

@@ -8,7 +8,7 @@ import Link from 'next/link'
 export const columns: ColumnDef<FunnelsForSubAccount>[] = [
   {
     accessorKey: 'name',
-    header: 'Name',
+    header: 'Jméno',
     cell: ({ row }) => {
       return (
         <Link
@@ -23,7 +23,7 @@ export const columns: ColumnDef<FunnelsForSubAccount>[] = [
   },
   {
     accessorKey: 'updatedAt',
-    header: 'Last Updated',
+    header: 'Naposledy Aktualizováno',
     cell: ({ row }) => {
       const date = ` ${row.original.updatedAt.toDateString()} ${row.original.updatedAt.toLocaleTimeString()} `
       return <span className="text-muted-foreground">{date}</span>
@@ -35,7 +35,7 @@ export const columns: ColumnDef<FunnelsForSubAccount>[] = [
     cell: ({ row }) => {
       const status = row.original.published
       return status ? (
-        <Badge variant={'default'}>Live - {row.original.subDomainName}</Badge>
+        <Badge variant={'default'}>Zveřejneno - {row.original.subDomainName}</Badge>
       ) : (
         <Badge variant={'secondary'}>Draft</Badge>
       )

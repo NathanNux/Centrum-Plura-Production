@@ -6,10 +6,7 @@ import { EditorBtns } from '@/lib/constants'
 import { getFunnel, getSubaccountDetails } from '@/lib/queries'
 import { getStripe } from '@/lib/stripe/stripe-client'
 import { EditorElement, useEditor } from '@/providers/editor/editor-provider'
-import {
-  EmbeddedCheckout,
-  EmbeddedCheckoutProvider,
-} from '@stripe/react-stripe-js'
+import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import clsx from 'clsx'
 import { Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -69,7 +66,7 @@ const Checkout = (props: Props) => {
           )
           const responseJson = await response.json()
           console.log(responseJson)
-          if (!responseJson) throw new Error('somethign went wrong')
+          if (!responseJson) throw new Error('něco se pokazilo')
           if (responseJson.error) {
             throw new Error(responseJson.error)
           }
@@ -81,7 +78,7 @@ const Checkout = (props: Props) => {
             open: true,
             className: 'z-[100000]',
             variant: 'destructive',
-            title: 'Oppse!',
+            title: 'Opps!',
             //@ts-ignore
             description: error.message,
           })

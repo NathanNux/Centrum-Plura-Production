@@ -1,26 +1,9 @@
 'use client'
 import CreateLaneForm from '@/components/forms/lane-form'
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Badge } from '@/components/ui/badge'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { deleteLane, saveActivityLogsNotification } from '@/lib/queries'
 import { LaneDetail, TicketWithTags } from '@/lib/types'
 import { cn } from '@/lib/utils'
@@ -58,7 +41,7 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
 
   const amt = new Intl.NumberFormat(undefined, {
     style: 'currency',
-    currency: 'USD',
+    currency: 'CZK',
   })
 
   const laneAmt = useMemo(() => {
@@ -78,8 +61,8 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
   const handleCreateTicket = () => {
     setOpen(
       <CustomModal
-        title="Create A Ticket"
-        subheading="Tickets are a great way to keep track of tasks"
+        title="Vytcořit Lístek"
+        subheading="Lískty jsou skvělý způsob jak sledovat Vaše úkoly."
       >
         <TicketForm
           getNewTicket={addNewTicket}
@@ -93,7 +76,7 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
   const handleEditLane = () => {
     setOpen(
       <CustomModal
-        title="Edit Lane Details"
+        title="Upravit informace sloupce"
         subheading=""
       >
         <CreateLaneForm
@@ -109,7 +92,7 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
       const response = await deleteLane(laneDetails.id)
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Deleted a lane | ${response?.name}`,
+        description: `Smazal/a Sloupec | ${response?.name}`,
         subaccountId,
       })
       router.refresh()
@@ -203,12 +186,12 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
                   </Droppable>
 
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>Options</DropdownMenuLabel>
+                    <DropdownMenuLabel>Možnosti</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <AlertDialogTrigger>
                       <DropdownMenuItem className="flex items-center gap-2">
                         <Trash size={15} />
-                        Delete
+                        Smazat
                       </DropdownMenuItem>
                     </AlertDialogTrigger>
 
@@ -217,34 +200,34 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
                       onClick={handleEditLane}
                     >
                       <Edit size={15} />
-                      Edit
+                      Upravit
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       className="flex items-center gap-2"
                       onClick={handleCreateTicket}
                     >
                       <PlusCircleIcon size={15} />
-                      Create Ticket
+                      Vytvořit Lístek
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </div>
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogTitle>
-                      Are you absolutely sure?
+                      Jste si opravdu jisti?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      your account and remove your data from our servers.
+                      Tato akce nelze vrátit. Tímto se smaže sloupec a všechna
+                      data související s ním.
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter className="flex items-center">
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogCancel>Zrušit</AlertDialogCancel>
                     <AlertDialogAction
                       className="bg-destructive"
                       onClick={handleDeleteLane}
                     >
-                      Continue
+                      Pokračovat
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

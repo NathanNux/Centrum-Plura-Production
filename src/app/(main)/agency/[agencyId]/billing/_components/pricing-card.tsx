@@ -2,14 +2,7 @@
 import SubscriptionFormWrapper from '@/components/forms/subscription-form/subscription-form-wrapper'
 import CustomModal from '@/components/global/custom-modal'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { PricesList } from '@/lib/types'
 import { useModal } from '@/providers/modal-provider'
 import { useSearchParams } from 'next/navigation'
@@ -49,8 +42,8 @@ const PricingCard = ({
   const handleManagePlan = async () => {
     setOpen(
       <CustomModal
-        title={'Manage Your Plan'}
-        subheading="You can change your plan at any time from the billings settings"
+        title={'Spravujte si svůj plán'}
+        subheading="Svůj plán můžete kdykoliv změnit v nastavení Billings."
       >
         <SubscriptionFormWrapper
           customerId={customerId}

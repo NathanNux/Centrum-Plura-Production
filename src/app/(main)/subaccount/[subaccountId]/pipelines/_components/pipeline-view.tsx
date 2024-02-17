@@ -51,8 +51,8 @@ const PipelineView = ({
   const handleAddLane = () => {
     setOpen(
       <CustomModal
-        title=" Create A Lane"
-        subheading="Lanes allow you to group tickets"
+        title="Vytvořit Sloupec"
+        subheading="Sloupce Vám umožní seskupit lísky do sloupců a sledovat Vaše obchodní procesy na jednom místě."
       >
         <LaneForm pipelineId={pipelineId} />
       </CustomModal>
@@ -143,7 +143,7 @@ const PipelineView = ({
             onClick={handleAddLane}
           >
             <Plus size={15} />
-            Create Lane
+            Vytvořit Sloupec
           </Button>
         </div>
         <Droppable

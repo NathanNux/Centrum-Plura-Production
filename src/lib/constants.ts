@@ -31,39 +31,39 @@ import Warning from '@/components/icons/warning'
 export const pricingCards = [
   {
     title: 'Starter', //This name muset be in it, or change the values in page.tsx in the agency billing folder
-    description: 'Perfect for trying out Centrum',
-    price: 'Free',
+    description: 'Perfektní pro vyzkoušení Centra',
+    price: 'Zdarma',
     duration: '',
     highlight: 'Key features',
-    features: ['3 Sub accounts', '2 Team members', 'Unlimited pipelines'],
+    features: ['3 Subúčty', '2 Týmový členi', 'Neomezené Obchodní Plány'],
     priceId: '',
   },
   
   {
     title: 'Basic',
-    description: 'For serious agency owners',
+    description: 'Pro seriózní majitele',
     price: '$49',
-    duration: 'month',
-    highlight: 'Everything in Starter, plus',
-    features: ['Unlimited Sub accounts', 'Unlimited Team members'],
+    duration: 'měsíc',
+    highlight: 'Všehcno ze Starter, plus',
+    features: ['Neomezené Subúčty', 'Nemození Týmový členi'],
     priceId: 'price_1OkmFoJJY6yIgEl7mvbSSCGf',
   },
   {
       title: 'Pro',
-      description: 'The Pro agency package',
+      description: 'Pro Balíček pro podnikatele',
       price: '$99',
       duration: 'month',
-      highlight: 'Everything in basic, plus',
-      features: ['Unlimited Sub accounts', 'Unlimited Team members'],
+      highlight: 'Všechnu z Basic, plus',
+      features: ['Neomezené Automatizace', '10 Funnelů'],
       priceId: 'price_1OkmFWJJY6yIgEl7OUDLGUrU',
     },
 {
     title: 'Unlimited',
-    description: 'The ultimate agency kit',
+    description: 'Neomezený balíček pro podnikatele',
     price: '$199',
     duration: 'month',
-    highlight: 'Key features',
-    features: ['Rebilling', '24/7 Support team'],
+    highlight: 'Všechno z Pro, plus',
+    features: ['Neomezené Funnely', '24/7 Podpora'],
     priceId: 'price_1OkmEoJJY6yIgEl7XAGrAyh2',
   },
 ]
@@ -71,7 +71,7 @@ export const pricingCards = [
 
 // add on products for the pricing page ass you like - those are add ons every title and id will show up there, resct can be modified in page.tsx in billing
 export const addOnProducts = [
-{ title: 'Priority Support', id: 'prod_PYqkLMsOHr2tlE'}
+{ title: 'Prioritní Podpora', id: 'prod_PYqkLMsOHr2tlE'}
 ]
 
 export const icons = [

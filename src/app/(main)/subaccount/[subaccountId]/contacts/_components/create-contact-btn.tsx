@@ -15,15 +15,15 @@ const CraeteContactButton = ({ subaccountId }: Props) => {
   const handleCreateContact = async () => {
     setOpen(
       <CustomModal
-        title="Create Or Update Contact information"
-        subheading="Contacts are like customers."
+        title="Vytvořte nebo Aktualizujte informace o kontaktu."
+        subheading="Kontakty jsou Vaši Zákazníci."
       >
         <ContactUserForm subaccountId={subaccountId} />
       </CustomModal>
     )
   }
 
-  return <Button onClick={handleCreateContact}>Create Contact</Button>
+  return <Button onClick={handleCreateContact}>Vytvořit Kontakt</Button>
 }
 
 export default CraeteContactButton

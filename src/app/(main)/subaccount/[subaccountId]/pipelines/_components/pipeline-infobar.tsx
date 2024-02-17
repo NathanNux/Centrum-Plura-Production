@@ -2,17 +2,8 @@
 import CreatePipelineForm from '@/components/forms/create-pipeline-form'
 import CustomModal from '@/components/global/custom-modal'
 import { Button } from '@/components/ui/button'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-} from '@/components/ui/command'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
+import { Command, CommandEmpty, CommandGroup, CommandItem } from '@/components/ui/command'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { useModal } from '@/providers/modal-provider'
 import { Pipeline } from '@prisma/client'
@@ -34,8 +25,8 @@ const PipelineInfoBar = ({ pipelineId, pipelines, subAccountId }: Props) => {
   const handleClickCreatePipeline = () => {
     setOpenModal(
       <CustomModal
-        title="Create A Pipeline"
-        subheading="Pipelines allows you to group tickets into lanes and track your business processes all in one place."
+        title="Vytvořit Obchodní Plán"
+        subheading="Obchodní Plán Vám umožní seskupit tikety (lísky) do sloupců a sledovat Vaše obchodní procesy na jednom místě."
       >
         <CreatePipelineForm subAccountId={subAccountId} />
       </CustomModal>
@@ -58,13 +49,13 @@ const PipelineInfoBar = ({ pipelineId, pipelines, subAccountId }: Props) => {
             >
               {value
                 ? pipelines.find((pipeline) => pipeline.id === value)?.name
-                : 'Select a pipeline...'}
+                : 'Vybrat Obchodní Plán...'}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-[200px] p-0">
             <Command>
-              <CommandEmpty>No pipelines found.</CommandEmpty>
+              <CommandEmpty>Žádné Obchodní Plány</CommandEmpty>
               <CommandGroup>
                 {pipelines.map((pipeline) => (
                   <Link
@@ -95,7 +86,7 @@ const PipelineInfoBar = ({ pipelineId, pipelines, subAccountId }: Props) => {
                   onClick={handleClickCreatePipeline}
                 >
                   <Plus size={15} />
-                  Create Pipeline
+                  Vytvořit Obchodní Plán
                 </Button>
               </CommandGroup>
             </Command>

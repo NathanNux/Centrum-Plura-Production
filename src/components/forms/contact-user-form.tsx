@@ -3,22 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import Loading from '../global/loading'
@@ -63,20 +49,20 @@ const ContactUserForm: React.FC<ContactUserFormProps> = ({ subaccountId }) => {
       })
       await saveActivityLogsNotification({
         agencyId: undefined,
-        description: `Updated a contact | ${response?.name}`,
+        description: `Aktualizoval/a Kontakt | ${response?.name}`,
         subaccountId: subaccountId,
       })
       toast({
-        title: 'Success',
-        description: 'Saved funnel details',
+        title: 'Úspěch',
+        description: 'Informace o Kontaktu byly uloženy',
       })
       setClose()
       router.refresh()
     } catch (error) {
       toast({
         variant: 'destructive',
-        title: 'Oppse!',
-        description: 'Could not save funnel details',
+        title: 'Opps!',
+        description: 'Informace o Kontaktu nemohly být uloženy',
       })
     }
   }
@@ -84,10 +70,9 @@ const ContactUserForm: React.FC<ContactUserFormProps> = ({ subaccountId }) => {
   return (
     <Card className=" w-full">
       <CardHeader>
-        <CardTitle>Contact Info</CardTitle>
+        <CardTitle>Kontakt Info</CardTitle>
         <CardDescription>
-          You can assign tickets to contacts and set a value for each contact in
-          the ticket.
+          Ke kontaktu můžete připnout Lístky a nastavit hodnotu pro každý kontakt v lístku.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -102,10 +87,10 @@ const ContactUserForm: React.FC<ContactUserFormProps> = ({ subaccountId }) => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Jméno</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Name"
+                      placeholder="Jméno"
                       {...field}
                     />
                   </FormControl>
@@ -119,11 +104,11 @@ const ContactUserForm: React.FC<ContactUserFormProps> = ({ subaccountId }) => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>E-mail</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="Email"
+                      placeholder="E-mail"
                       {...field}
                     />
                   </FormControl>
@@ -140,7 +125,7 @@ const ContactUserForm: React.FC<ContactUserFormProps> = ({ subaccountId }) => {
               {form.formState.isSubmitting ? (
                 <Loading />
               ) : (
-                'Save Contact Details!'
+                'Informace o Kontaktu uloženy!'
               )}
             </Button>
           </form>

@@ -1,12 +1,6 @@
 import BlurPage from '@/components/global/blur-page'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { db } from '@/lib/db'
 import { stripe } from '@/lib/stripe'
 import { getStripeOAuthLink } from '@/lib/utils'
@@ -64,7 +58,7 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
         })
         connectedStripeAccount = true
       } catch (error) {
-        console.log('🔴 Could not connect stripe account', error)
+        console.log('🔴 Nelze připojit stripe účet', error)
       }
     }
   }
@@ -75,9 +69,9 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
         <div className="w-full h-full max-w-[800px]">
           <Card className="border-none ">
             <CardHeader>
-              <CardTitle>Lets get started!</CardTitle>
+              <CardTitle>Pojďme začít</CardTitle>
               <CardDescription>
-                Follow the steps below to get your account setup correctly.
+                Následujte kroky níže, abyste mohli nastavit svůj účet správně.
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
@@ -90,9 +84,9 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
                     width={80}
                     className="rounded-md object-contain"
                   />
-                  <p>Save the website as a shortcut on your mobile devide</p>
+                  <p>Uložte si Centrum jako zkratku na Vašem telefonu.</p>
                 </div>
-                <Button>Start</Button>
+                <Button>Začít</Button>
               </div>
               <div className="flex justify-between items-center w-full h-20 border p-4 rounded-lg">
                 <div className="flex items-center gap-4">
@@ -104,8 +98,8 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
                     className="rounded-md object-contain "
                   />
                   <p>
-                    Connect your stripe account to accept payments. Stripe is
-                    used to run payouts.
+                    Připojte svůj Stripe účet pro přijímání plateb. Stripe je
+                    použit pro provádění plateb.
                   </p>
                 </div>
                 {subaccountDetails.connectAccountId ||
@@ -119,7 +113,7 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
                     className="bg-primary py-2 px-4 rounded-md text-white"
                     href={stripeOAuthLink}
                   >
-                    Start
+                    Začít
                   </Link>
                 )}
               </div>
@@ -132,7 +126,7 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
                     width={80}
                     className="rounded-md object-contain p-4"
                   />
-                  <p>Fill in all your business details.</p>
+                  <p>Vyplňte všechny informace o Vašem podniku.</p>
                 </div>
                 {allDetailsExist ? (
                   <CheckCircleIcon
@@ -144,7 +138,7 @@ const LaunchPad = async ({ params, searchParams }: Props) => {
                     className="bg-primary py-2 px-4 rounded-md text-white"
                     href={`/subaccount/${subaccountDetails.id}/settings`}
                   >
-                    Start
+                    Začít
                   </Link>
                 )}
               </div>
