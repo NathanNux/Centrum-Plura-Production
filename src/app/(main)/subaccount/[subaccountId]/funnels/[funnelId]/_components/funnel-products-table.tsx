@@ -104,15 +104,15 @@ const FunnelProductsTable: React.FC<FunnelProductsTableProps> = ({
               <TableCell>
                 {
                   //@ts-ignore
-                  product.default_price?.recurring ? 'Recurring' : 'One Time'
+                  product.default_price?.recurring ? 'Opakované' : 'Jednorázové'
                 }
               </TableCell>
               <TableCell className="text-right">
-                $
                 {
                   //@ts-ignore
                   product.default_price?.unit_amount / 100
                 }
+                CZK
               </TableCell>
             </TableRow>
           ))}

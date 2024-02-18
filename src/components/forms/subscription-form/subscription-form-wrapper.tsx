@@ -105,7 +105,7 @@ const SubscriptionFormWrapper = ({ customerId, planExists }: Props) => {
 
         {options.clientSecret && !planExists && (
           <>
-            <h1 className="text-xl">Platevní metoda</h1>
+            <h1 className="text-xl">Platební metoda</h1>
             <Elements
               stripe={getStripe()}
               options={options}

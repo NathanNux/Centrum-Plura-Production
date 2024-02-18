@@ -41,7 +41,7 @@ const ContactPage = async ({ params }: Props) => {
   const allContacts = contacts.Contact
 
   const formatTotal = (tickets: Ticket[]) => {
-    if (!tickets || !tickets.length) return '$0.00'
+    if (!tickets || !tickets.length) return '0.00 CZK'
     const amt = new Intl.NumberFormat(undefined, {
       style: 'currency',
       currency: 'CZK',
@@ -81,7 +81,7 @@ const ContactPage = async ({ params }: Props) => {
               </TableCell>
               <TableCell>{contact.email}</TableCell>
               <TableCell>
-                {formatTotal(contact.Ticket) === '$0.00' ? (
+                {formatTotal(contact.Ticket) === '0.00 CZK' ? (
                   <Badge variant={'destructive'}>neaktivní</Badge>
                 ) : (
                   <Badge className="bg-emerald-700">aktivní</Badge>

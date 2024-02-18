@@ -42,7 +42,7 @@ export const pricingCards = [
   {
     title: 'Basic',
     description: 'Pro seriózní majitele',
-    price: '$49',
+    price: '1200CZK',
     duration: 'měsíc',
     highlight: 'Všehcno ze Starter, plus',
     features: ['Neomezené Subúčty', 'Nemození Týmový členi'],
@@ -51,7 +51,7 @@ export const pricingCards = [
   {
       title: 'Pro',
       description: 'Pro Balíček pro podnikatele',
-      price: '$99',
+      price: '2400CZK',
       duration: 'month',
       highlight: 'Všechnu z Basic, plus',
       features: ['Neomezené Automatizace', '10 Funnelů'],
@@ -60,7 +60,7 @@ export const pricingCards = [
 {
     title: 'Unlimited',
     description: 'Neomezený balíček pro podnikatele',
-    price: '$199',
+    price: '4800CZK',
     duration: 'month',
     highlight: 'Všechno z Pro, plus',
     features: ['Neomezené Funnely', '24/7 Podpora'],
