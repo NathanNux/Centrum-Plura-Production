@@ -250,7 +250,7 @@ const MenuOptions = ({
           <Separator className="mb-4" />
           <nav className="relative">
             <Command className="rounded-lg overflow-visible bg-transparent">
-              <CommandInput placeholder="Search..." />
+              <CommandInput placeholder="Hledat..." />
               <CommandList className="py-4 overflow-visible">
                 <CommandEmpty>Žádné výsledky</CommandEmpty>
                 <CommandGroup className="overflow-visible">
