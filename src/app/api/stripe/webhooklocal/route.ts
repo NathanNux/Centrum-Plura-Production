@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 })
   }
 
-  //this is the local webhook, but needs to be separate as it is a different route for Stripe - APP side webhook 
+  //
   try {
     if (stripeWebhookEvents.has(stripeEvent.type)) {
       const subscription = stripeEvent.data.object as Stripe.Subscription
