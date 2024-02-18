@@ -37,8 +37,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="flex justify-center items-center flex-col gap-4 md:!mt-20 mt-[-60px]">
-        <h2 className="text-4xl text-center mt-[450px]">Vyberte si, co Vám přijde správné. 
-        TOTO JE DEMO, POUŽIJTE POUZE MOŽNOST ZDARMA, STRIPE NEPODPORUJE TEST MODE V PRODUCTION VERZI</h2>
+        <h2 className="text-4xl text-center mt-[450px]">Vyberte si, co Vám přijde správné.</h2>
         <p className="text-muted-foreground text-center">
           Naše jednoduché cenové plány jsou přizpůsobeny Vašim potřebám.
           Pokud
